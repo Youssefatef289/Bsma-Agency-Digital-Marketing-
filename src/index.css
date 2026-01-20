@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import all section styles */
+@import './styles/animations.css';
+@import './styles/common.css';
+@import './styles/navbar.css';
+@import './styles/footer.css';
+@import './styles/hero.css';
+@import './styles/stats.css';
+@import './styles/features.css';
+@import './styles/services.css';
+@import './styles/portfolio.css';
+@import './styles/testimonials.css';
+@import './styles/cta.css';
+@import './styles/about.css';
+@import './styles/contact.css';
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+    font-family: "Josefin Sans", sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .language-transition {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.3s ease-in-out;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+}
+
+/* RTL/LTR transitions */
+[dir="rtl"] {
+  transition: all 0.3s ease-in-out;
+}
+
+[dir="ltr"] {
+  transition: all 0.3s ease-in-out;
+}

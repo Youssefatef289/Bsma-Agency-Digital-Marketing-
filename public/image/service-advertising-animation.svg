@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <style>
+      @keyframes wave { 0%, 100% { d: path('M0,150 Q75,100 150,150 T300,150'); } 50% { d: path('M0,150 Q75,200 150,150 T300,150'); } }
+      @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+      .waving { animation: wave 2s ease-in-out infinite; }
+      .blinking { animation: blink 1.5s ease-in-out infinite; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="150" cy="150" r="145" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="2"/>
+  
+  <!-- Megaphone icon (Advertising) -->
+  <g class="pulsing">
+    <rect x="80" y="120" width="60" height="40" rx="10" fill="#0ea5e9" transform="rotate(-30 110 140)"/>
+    <circle cx="160" cy="150" r="25" fill="#0ea5e9" opacity="0.7"/>
+    <circle cx="170" cy="155" r="15" fill="#0ea5e9" opacity="0.5"/>
+  </g>
+  
+  <!-- Wave lines (Sound) -->
+  <g class="waving" stroke="#0ea5e9" stroke-width="2" fill="none" opacity="0.6">
+    <path d="M0,150 Q75,100 150,150 T300,150"/>
+  </g>
+  
+  <!-- Blinking dots -->
+  <circle cx="120" cy="100" r="5" fill="#06b6d4" class="blinking"/>
+  <circle cx="180" cy="100" r="5" fill="#06b6d4" class="blinking" style="animation-delay: 0.5s;"/>
+  
+  <!-- Center badge -->
+  <circle cx="150" cy="220" r="30" fill="#0284c7"/>
+  <text x="150" y="230" text-anchor="middle" font-size="18" font-weight="bold" fill="white">AD</text>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <style>
+      @keyframes rotate360 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes pulse-scale { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+      .rotating { animation: rotate360 4s linear infinite; }
+      .pulsing { animation: pulse-scale 2s ease-in-out infinite; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="150" cy="150" r="145" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="2"/>
+  
+  <!-- Palette icon (Graphic Design) -->
+  <g class="pulsing">
+    <circle cx="150" cy="100" r="40" fill="#ec4899" opacity="0.2"/>
+    <path d="M130 100 Q150 80 170 100 Q150 120 130 100" fill="#ec4899"/>
+    <circle cx="135" cy="110" r="6" fill="#ec4899"/>
+    <circle cx="150" cy="115" r="6" fill="#f472b6"/>
+    <circle cx="165" cy="110" r="6" fill="#fbcfe8"/>
+  </g>
+  
+  <!-- Decorative circles -->
+  <g class="rotating">
+    <circle cx="150" cy="50" r="8" fill="#a78bfa" opacity="0.6"/>
+    <circle cx="215" cy="100" r="8" fill="#a78bfa" opacity="0.6"/>
+    <circle cx="215" cy="200" r="8" fill="#a78bfa" opacity="0.6"/>
+    <circle cx="150" cy="250" r="8" fill="#a78bfa" opacity="0.6"/>
+    <circle cx="85" cy="200" r="8" fill="#a78bfa" opacity="0.6"/>
+    <circle cx="85" cy="100" r="8" fill="#a78bfa" opacity="0.6"/>
+  </g>
+  
+  <!-- Center badge -->
+  <circle cx="150" cy="180" r="35" fill="#7c3aed"/>
+  <text x="150" y="190" text-anchor="middle" font-size="20" font-weight="bold" fill="white">D</text>
+</svg>

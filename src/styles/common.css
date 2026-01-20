@@ -1,0 +1,46 @@
+/* Common Styles */
+.text-gradient {
+  background: linear-gradient(to right, #2563eb, #1e40af);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.page-transition {
+  animation: pageFadeIn 0.4s ease-in-out;
+}
+
+/* Utility Classes */
+.section-padding {
+  padding: 5rem 0;
+}
+
+.container-max {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* RTL/LTR Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .section-padding {
+    padding: 3rem 0;
+  }
+}
+
