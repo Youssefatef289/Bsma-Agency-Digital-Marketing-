@@ -38,14 +38,14 @@ const FloatingActionButton = () => {
     {
       name: 'Instagram',
       icon: FaInstagram,
-      href: 'https://instagram.com/your_instagram', // Replace with your Instagram link
+      href: 'https://www.instagram.com/ma8535128?igsh=NXF1ejJpdGxsdTRs',
       color: 'bg-gradient-to-b from-[#E4405F] to-[#F56040]',
       delay: 'delay-150',
     },
     {
       name: 'TikTok',
       icon: FaTiktok,
-      href: 'https://tiktok.com/@your_tiktok', // Replace with your TikTok link
+      href: 'https://www.tiktok.com/@bsmabsma116?_r=1&_t=ZS-93G9HOx1ria',
       color: 'bg-gradient-to-b from-[#000000] to-[#161823]',
       delay: 'delay-200',
     },

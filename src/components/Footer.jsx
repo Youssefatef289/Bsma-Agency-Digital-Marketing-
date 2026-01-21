@@ -11,13 +11,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: FaFacebook, href: '#', label: 'Facebook', color: 'hover:bg-blue-600' },
-    { icon: FaInstagram, href: '#', label: 'Instagram', color: 'hover:bg-gradient-to-r hover:from-purple-600 hover:via-pink-600 hover:to-orange-500' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/share/1GzGm9TnRN/', label: 'Facebook', color: 'hover:bg-blue-600' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/ma8535128?igsh=NXF1ejJpdGxsdTRs', label: 'Instagram', color: 'hover:bg-gradient-to-r hover:from-purple-600 hover:via-pink-600 hover:to-orange-500' },
     { icon: FaLinkedin, href: '#', label: 'LinkedIn', color: 'hover:bg-blue-700' },
     { icon: FaYoutube, href: '#', label: 'YouTube', color: 'hover:bg-red-600' },
     { icon: FaTelegram, href: '#', label: 'Telegram', color: 'hover:bg-blue-500' },
     { icon: FaWhatsapp, href: '#', label: 'WhatsApp', color: 'hover:bg-green-500' },
-    { icon: FaTiktok, href: '#', label: 'TikTok', color: 'hover:bg-black' },
+    { icon: FaTiktok, href: 'https://www.tiktok.com/@bsmabsma116?_r=1&_t=ZS-93G9HOx1ria', label: 'TikTok', color: 'hover:bg-black' },
     { icon: FaSnapchat, href: '#', label: 'Snapchat', color: 'hover:bg-yellow-400' },
   ]
 
