@@ -1,13 +1,80 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowLeft, Palette, Megaphone, Share2, Video, Globe, CheckCircle, Star, TrendingUp, Users, Award } from 'lucide-react'
+import { useRef, useEffect, useState } from 'react'
+import { ArrowRight, ArrowLeft, Palette, Megaphone, Share2, Video, Globe, CheckCircle, TrendingUp, Users, Award, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { translations } from '../translations/translations'
+import heroIllustration from '../assets/illustrations/hero-illustration.svg'
+import svgPaidAds from '../assets/illustrations/service-paid-ads.svg'
+import svgSocial from '../assets/illustrations/service-social-media.svg'
+import svgVideo from '../assets/illustrations/service-video.svg'
 
 const Home = () => {
   const { language, isTransitioning } = useLanguage()
   const t = translations[language]
   const isRTL = language === 'ar'
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight
+  const PrevIcon = isRTL ? ChevronRight : ChevronLeft
+  const NextIcon = isRTL ? ChevronLeft : ChevronRight
+
+  const graphicSliderRef = useRef(null)
+  const webSliderRef = useRef(null)
+  const [isPaused, setIsPaused] = useState(false)
+
+  const scrollSlider = (ref, dir) => {
+    const el = ref?.current
+    if (!el) return
+    const cardWidth = window.innerWidth >= 1024 ? 420 : window.innerWidth >= 768 ? 340 : 280
+    const gap = 16
+    const amount = cardWidth + gap
+    const direction = isRTL ? -dir : dir
+    el.scrollBy({ left: direction * amount, behavior: 'smooth' })
+  }
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (isPaused) return
+
+    const graphicInterval = setInterval(() => {
+      if (graphicSliderRef.current) {
+        const el = graphicSliderRef.current
+        const cardWidth = window.innerWidth >= 1024 ? 420 : window.innerWidth >= 768 ? 340 : 280
+        const gap = 16
+        const scrollAmount = cardWidth + gap
+        const maxScroll = el.scrollWidth - el.clientWidth
+        const currentScroll = el.scrollLeft
+
+        if (currentScroll >= maxScroll - 10) {
+          // Reset to start
+          el.scrollTo({ left: 0, behavior: 'smooth' })
+        } else {
+          el.scrollBy({ left: isRTL ? -scrollAmount : scrollAmount, behavior: 'smooth' })
+        }
+      }
+    }, 4000)
+
+    const webInterval = setInterval(() => {
+      if (webSliderRef.current) {
+        const el = webSliderRef.current
+        const cardWidth = window.innerWidth >= 1024 ? 420 : window.innerWidth >= 768 ? 340 : 280
+        const gap = 16
+        const scrollAmount = cardWidth + gap
+        const maxScroll = el.scrollWidth - el.clientWidth
+        const currentScroll = el.scrollLeft
+
+        if (currentScroll >= maxScroll - 10) {
+          // Reset to start
+          el.scrollTo({ left: 0, behavior: 'smooth' })
+        } else {
+          el.scrollBy({ left: isRTL ? -scrollAmount : scrollAmount, behavior: 'smooth' })
+        }
+      }
+    }, 4000)
+
+    return () => {
+      clearInterval(graphicInterval)
+      clearInterval(webInterval)
+    }
+  }, [isPaused, isRTL])
 
   const services = [
     {
@@ -15,35 +82,37 @@ const Home = () => {
       title: t.home.graphicDesign,
       description: t.home.graphicDesignDesc,
       color: 'from-purple-500 to-pink-500',
-      image: '/image/service-design-animation.svg',
+      image: '/image/Portfolio/Portfolio-Graphic Design/تصميمات1.png',
+      portfolioLink: '/portfolio?category=graphic',
     },
     {
       icon: Megaphone,
       title: t.home.paidAdvertising,
       description: t.home.paidAdvertisingDesc,
       color: 'from-blue-500 to-cyan-500',
-      image: '/image/service-advertising-animation.svg',
+      image: svgPaidAds,
     },
     {
       icon: Share2,
       title: t.home.socialMedia,
       description: t.home.socialMediaDesc,
       color: 'from-green-500 to-emerald-500',
-      image: '/image/service-social-animation.svg',
+      image: svgSocial,
     },
     {
       icon: Video,
       title: t.home.videoProduction,
       description: t.home.videoProductionDesc,
       color: 'from-red-500 to-orange-500',
-      image: '/image/service-video-animation.svg',
+      image: svgVideo,
     },
     {
       icon: Globe,
       title: t.home.webDevelopment,
       description: t.home.webDevelopmentDesc,
       color: 'from-indigo-500 to-blue-500',
-      image: '/image/service-web-animation.svg',
+      image: '/image/Portfolio/Portfolio-Website/Sky-Block.png',
+      portfolioLink: '/portfolio?category=website',
     },
   ]
 
@@ -68,71 +137,117 @@ const Home = () => {
 
   const portfolioItems = [
     {
-      title: language === 'en' ? 'Brand Identity Design' : 'تصميم الهوية البصرية',
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
       category: t.home.graphicDesign,
-      image: '/image/Portfolio/Portfolio-Graphic Design/1.png',
+      image: '/image/Portfolio/Portfolio-Graphic Design/تصميمات1.png',
+      link: '/portfolio?category=graphic',
     },
     {
-      title: language === 'en' ? 'Modern Social Media Design' : 'تصميمات وسائل التواصل',
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
       category: t.home.graphicDesign,
-      image: '/image/Portfolio/Portfolio-Graphic Design/2.png',
+      image: '/image/Portfolio/Portfolio-Graphic Design/تصميمات2.png',
+      link: '/portfolio?category=graphic',
     },
     {
-      title: language === 'en' ? 'Creative Campaign Design' : 'تصميم الحملات الإبداعية',
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
       category: t.home.graphicDesign,
-      image: '/image/Portfolio/Portfolio-Graphic Design/3.png',
+      image: '/image/Portfolio/Portfolio-Graphic Design/تصميمات3.png',
+      link: '/portfolio?category=graphic',
     },
     {
-      title: language === 'en' ? 'Corporate Branding' : 'العلامات التجارية للشركات',
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
+      category: t.home.graphicDesign,
+      image: '/image/Portfolio/Portfolio-Graphic Design/تصميمات4.png',
+      link: '/portfolio?category=graphic',
+    },
+    {
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
       category: t.home.graphicDesign,
       image: '/image/Portfolio/Portfolio-Graphic Design/Artboard 1.png',
+      link: '/portfolio?category=graphic',
     },
     {
-      title: language === 'en' ? 'Visual Content Design' : 'تصميم المحتوى البصري',
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
       category: t.home.graphicDesign,
       image: '/image/Portfolio/Portfolio-Graphic Design/Artboard 2.png',
+      link: '/portfolio?category=graphic',
     },
     {
-      title: language === 'en' ? 'Promotional Graphics' : 'الجرافيكس الترويجية',
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
       category: t.home.graphicDesign,
       image: '/image/Portfolio/Portfolio-Graphic Design/Artboard 3.png',
+      link: '/portfolio?category=graphic',
+    },
+    {
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
+      category: t.home.graphicDesign,
+      image: '/image/Portfolio/Portfolio-Graphic Design/Artboard 4.png',
+      link: '/portfolio?category=graphic',
+    },
+    {
+      title: language === 'en' ? 'Graphic Design Project' : 'مشروع جرافيك ديزاين',
+      category: t.home.graphicDesign,
+      image: '/image/Portfolio/Portfolio-Graphic Design/1.png',
+      link: '/portfolio?category=graphic',
     },
   ]
 
-  const testimonials = [
+  const websiteProjects = [
     {
-      name: 'Ahmed Mohamed',
-      company: language === 'en' ? 'Advanced Technology Co.' : 'شركة التقنية المتقدمة',
-      text: language === 'en' 
-        ? 'Very professional team that helped us increase our sales by 300% in 3 months. Thank you!'
-        : 'فريق محترف جداً وساعدونا نزيد مبيعاتنا بنسبة 300% خلال 3 شهور. شكراً لكم!',
-      rating: 5,
-      image: '/image/logo - blue 2.png',
+      title: 'Sky Block',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/Sky-Block.png',
+      link: 'https://sky-block-mu.vercel.app/',
+      isExternal: true,
     },
     {
-      name: 'Fatima Ali',
-      company: language === 'en' ? 'Success Foundation' : 'مؤسسة النجاح',
-      text: language === 'en'
-        ? 'Excellent services and continuous follow-up. Our social media accounts became active and engaging.'
-        : 'خدمات ممتازة ومتابعة مستمرة. حساباتنا على السوشيال ميديا بقيت نشطة ومتفاعلة.',
-      rating: 5,
-      image: '/image/Logo-bsma (1).png',
+      title: 'QAF BookStore',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/QAF BookStore (1).png',
+      link: 'https://qafbookstore.github.io/Book-store-QAF/',
+      isExternal: true,
     },
     {
-      name: 'Mohamed Khaled',
-      company: language === 'en' ? 'Online Store' : 'متجر أونلاين',
-      text: language === 'en'
-        ? 'They designed a professional website and e-commerce store that helped us sell online easily. Highly recommended!'
-        : 'صمموا لنا موقع احترافي ومتجر إلكتروني ساعدنا نبيع أونلاين بسهولة. أنصح بيهم!',
-      rating: 5,
-      image: '/image/Logo-bsma (2).png',
+      title: 'Mix Kitchens',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/Mix-Kitcien.png',
+      link: 'https://mix-kitchens.vercel.app/',
+      isExternal: true,
+    },
+    {
+      title: 'Lithioo For Perfumes',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/lithioo-for-perfumes.png',
+      link: 'https://lithioo-for-perfumes.vercel.app/',
+      isExternal: true,
+    },
+    {
+      title: 'Farouja',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/farouja.png',
+      link: 'https://farouja.vercel.app/',
+      isExternal: true,
+    },
+    {
+      title: 'Al Saad Company',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/Al-Saad Company.png',
+      link: 'https://youssefatef289.github.io/landing-page-saadalhussan/',
+      isExternal: true,
+    },
+    {
+      title: 'Herb Wonders',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/Herb Wonders.png',
+      link: 'https://youssefatef289.github.io/Herb----Wonders/',
+      isExternal: true,
     },
   ]
 
   const stats = [
-    { number: '50+', label: t.home.stats.satisfiedClients, icon: Users },
-    { number: '100+', label: t.home.stats.successfulProjects, icon: Award },
-    { number: '5+', label: t.home.stats.yearsExperience, icon: TrendingUp },
+    { number: '20+', label: t.home.stats.satisfiedClients, icon: Users },
+    { number: '60+', label: t.home.stats.successfulProjects, icon: Award },
+    { number: '2+', label: t.home.stats.yearsExperience, icon: TrendingUp },
     { number: '24/7', label: t.home.stats.technicalSupport, icon: CheckCircle },
   ]
 
@@ -141,6 +256,14 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="absolute inset-0 opacity-60">
+          <img
+            src={heroIllustration}
+            alt=""
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+          />
+        </div>
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at ${isRTL ? '20%' : '80%'} 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)`,
         }}></div>
@@ -177,9 +300,9 @@ const Home = () => {
                 <div className={`absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl transform ${isRTL ? 'rotate-6' : '-rotate-6'} opacity-20`}></div>
                 <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
                   <img
-                    src="/image/hero-animation.svg"
-                    alt="Bama Agency Digital Marketing"
-                    className="w-full h-auto opacity-90"
+                    src={heroIllustration}
+                    alt={language === 'en' ? 'Digital Marketing Illustration' : 'رسمة توضيحية للتسويق الرقمي'}
+                    className="w-full h-auto opacity-95"
                   />
                 </div>
               </div>
@@ -258,26 +381,49 @@ const Home = () => {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up group"
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up group border border-gray-100"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                  {/* Image */}
+                  <div className="relative h-56 bg-gray-100 overflow-hidden">
                     <img
-                      src={service.image}
+                      src={service.image || service.fallbackImage}
                       alt={service.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       onError={(e) => {
-                        e.target.style.display = 'none'
+                        if (service.fallbackImage && e.currentTarget.src !== service.fallbackImage) {
+                          e.currentTarget.src = service.fallbackImage
+                          return
+                        }
+                        e.currentTarget.style.display = 'none'
                       }}
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-80`}></div>
-                    <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} w-16 h-16 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center`}>
-                      <Icon className="text-white" size={32} />
+                    {/* Overlay gradient (light) */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+
+                    {/* Icon */}
+                    <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} w-12 h-12 rounded-xl bg-white/90 backdrop-blur flex items-center justify-center shadow`}>
+                      <Icon className="text-blue-600" size={24} />
                     </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+
+                  {/* Content Section */}
+                  <div className="p-6 bg-white">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+                      {service.description}
+                    </p>
+                    {service.portfolioLink && (
+                      <Link
+                        to={service.portfolioLink}
+                        className={`inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
+                      >
+                        <span>{language === 'en' ? 'View Portfolio' : 'عرض المعرض'}</span>
+                        <ArrowIcon size={16} />
+                      </Link>
+                    )}
                   </div>
                 </div>
               )
@@ -287,108 +433,169 @@ const Home = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {t.home.portfolio} <span className="text-gradient">{t.home.portfolioTitle}</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t.home.portfolioDescription}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioItems.map((item, index) => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 animate-slide-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="relative h-72 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-500 ease-out"
-                    onError={(e) => {
-                      e.target.style.display = 'none'
-                    }}
-                  />
-                  
-                  {/* Gradient Overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* Content on hover */}
-                  <div className={`absolute bottom-0 ${isRTL ? 'right-0 left-0' : 'left-0 right-0'} p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500`}>
-                    <span className="inline-block px-4 py-1.5 bg-blue-600 text-white text-sm font-semibold rounded-full mb-3">
-                      {item.category}
-                    </span>
-                    <h3 className="text-white text-2xl font-bold leading-tight">{item.title}</h3>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* View All Button */}
-          <div className="text-center mt-16 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <Link
-              to="/portfolio"
-              className={`inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:from-blue-700 hover:to-blue-800 ${isRTL ? 'flex-row-reverse' : ''}`}
-            >
-              {language === 'ar' ? 'شاهد جميع الأعمال' : 'View All Portfolio'}
-              <ArrowIcon size={20} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {t.home.testimonials} <span className="text-gradient">{t.home.clientsSay}</span>
+              {t.home.portfolio} <span className="text-gradient">{t.home.portfolioTitle}</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t.home.testimonialsDescription}
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+              {t.home.portfolioDescription}
             </p>
+            <Link
+              to="/portfolio"
+              className={`inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors text-lg ${isRTL ? 'flex-row-reverse' : ''}`}
+            >
+              {language === 'en' ? 'View Full Portfolio' : 'عرض المعرض الكامل'}
+              <ArrowIcon size={20} />
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100 animate-slide-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="text-yellow-400 fill-yellow-400" size={20} />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 leading-relaxed italic">
-                  "{testimonial.text}"
-                </p>
-                <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center overflow-hidden">
+          {/* Graphic Design Portfolio */}
+          <div className="mb-20">
+            <div className="flex items-center justify-between mb-8">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
+                {t.home.graphicDesign}
+              </h3>
+              <div className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsPaused(true)
+                    scrollSlider(graphicSliderRef, -1)
+                    setTimeout(() => setIsPaused(false), 5000)
+                  }}
+                  className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-500 transition-all flex items-center justify-center group"
+                  aria-label="Previous"
+                >
+                  <PrevIcon size={20} className="text-gray-600 group-hover:text-blue-600 transition-colors" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsPaused(true)
+                    scrollSlider(graphicSliderRef, 1)
+                    setTimeout(() => setIsPaused(false), 5000)
+                  }}
+                  className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-500 transition-all flex items-center justify-center group"
+                  aria-label="Next"
+                >
+                  <NextIcon size={20} className="text-gray-600 group-hover:text-blue-600 transition-colors" />
+                </button>
+              </div>
+            </div>
+
+            <div
+              ref={graphicSliderRef}
+              className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {portfolioItems.map((item, index) => (
+                <Link
+                  key={index}
+                  to={item.link}
+                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 snap-start flex-shrink-0 w-[280px] sm:w-[340px] lg:w-[420px] transform hover:-translate-y-2"
+                >
+                  <div className="relative h-[320px] sm:h-[380px] lg:h-[460px] bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
                     <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className={`absolute bottom-0 ${isRTL ? 'right-0' : 'left-0'} right-0 p-5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500`}>
+                      <div className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg mb-3">
+                        {t.home.graphicDesign}
+                      </div>
+                      <h4 className="text-white text-xl font-bold">{item.title}</h4>
+                      <p className="text-white/90 text-sm mt-2">
+                        {language === 'en' ? 'Click to view more' : 'اضغط لعرض المزيد'}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-bold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.company}</div>
-                  </div>
-                </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Website Projects */}
+          <div>
+            <div className="flex items-center justify-between mb-8">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
+                {t.home.webDevelopment}
+              </h3>
+              <div className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsPaused(true)
+                    scrollSlider(webSliderRef, -1)
+                    setTimeout(() => setIsPaused(false), 5000)
+                  }}
+                  className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-500 transition-all flex items-center justify-center group"
+                  aria-label="Previous"
+                >
+                  <PrevIcon size={20} className="text-gray-600 group-hover:text-blue-600 transition-colors" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsPaused(true)
+                    scrollSlider(webSliderRef, 1)
+                    setTimeout(() => setIsPaused(false), 5000)
+                  }}
+                  className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-500 transition-all flex items-center justify-center group"
+                  aria-label="Next"
+                >
+                  <NextIcon size={20} className="text-gray-600 group-hover:text-blue-600 transition-colors" />
+                </button>
               </div>
-            ))}
+            </div>
+
+            <div
+              ref={webSliderRef}
+              className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {websiteProjects.map((project, index) => (
+                <a
+                  key={index}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 snap-start flex-shrink-0 w-[280px] sm:w-[340px] lg:w-[420px] transform hover:-translate-y-2"
+                >
+                  <div className="relative h-[320px] sm:h-[380px] lg:h-[460px] bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className={`absolute bottom-0 ${isRTL ? 'right-0' : 'left-0'} right-0 p-5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500`}>
+                      <div className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg mb-3">
+                        {t.home.webDevelopment}
+                      </div>
+                      <h4 className="text-white text-xl font-bold mb-2">{project.title}</h4>
+                      <p className="text-white/90 text-sm flex items-center gap-2">
+                        {language === 'en' ? 'Visit Website →' : 'زيارة الموقع ←'}
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>

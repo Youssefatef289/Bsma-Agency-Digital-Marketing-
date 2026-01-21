@@ -31,7 +31,7 @@
 .services-description {
   font-size: 1.25rem;
   color: #4b5563;
-  max-width: 200px;
+  max-width: 42rem;
   margin: 0 auto;
 }
 
@@ -55,26 +55,24 @@
 
 .service-card {
   background: white;
-  border-radius: 5px;
+  border-radius: 1.5rem;
   overflow: hidden;
-  /*box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);*/
-  transition: all 0.3s;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   animation: slideUp 0.6s ease-out;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  position: relative;
 }
 
 .service-card:hover {
-  /* box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); */
-  transform: translateY(-0.5rem);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.75rem);
 }
 
 .service-image-container {
   position: relative;
-  height: 12rem;
-  background: linear-gradient(to bottom right, #f3f4f6, #e5e7eb);
+  height: 16rem;
+  background: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
   overflow: hidden;
 }
 
@@ -82,59 +80,86 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1) contrast(1);
 }
 
 .service-card:hover .service-image {
-  transform: scale(1.1);
+  transform: scale(1.15);
+  filter: brightness(1.05) contrast(1.1);
 }
 
 .service-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.8;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.service-card:hover .service-overlay {
+  opacity: 0.2;
 }
 
 .service-icon-wrapper {
   position: absolute;
-  top: 1rem;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 0.75rem;
-  /* background: rgba(255, 255, 255, 0.2); */
-  backdrop-filter: blur(4px);
+  top: 1.5rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s;
+}
+
+.service-card:hover .service-icon-wrapper {
+  transform: scale(1.1);
 }
 
 [dir="ltr"] .service-icon-wrapper {
-  left: 1rem;
+  left: 1.5rem;
 }
 
 [dir="rtl"] .service-icon-wrapper {
-  right: 1rem;
+  right: 1.5rem;
 }
 
 .service-icon {
-  color: white;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .service-content {
-  padding: 1.5rem;
+  padding: 2rem;
+  background: white;
 }
 
 .service-title {
   font-size: 1.5rem;
   font-weight: 700;
   color: #111827;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+
+.service-card:hover .service-title {
+  color: #2563eb;
 }
 
 .service-description {
   color: #4b5563;
   line-height: 1.75;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Enhanced image visibility */
+.service-card img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 

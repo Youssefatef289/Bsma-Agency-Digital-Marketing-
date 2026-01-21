@@ -1,0 +1,30 @@
+/* Floating Action Button Styles */
+.wave-animation {
+  animation: wave 1s linear infinite;
+}
+
+@keyframes wave {
+  0% {
+    box-shadow: 0 0 0px 0px rgba(37, 99, 235, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0px 10px rgba(37, 99, 235, 0);
+  }
+}
+
+/* Smooth transitions for social buttons */
+.fab-social-button {
+  transition: all 0.4s cubic-bezier(0, 0.01, 0, 1.27);
+}
+
+/* RTL Support */
+[dir="rtl"] .floating-action-button {
+  left: 1.25rem;
+  right: auto;
+}
+
+[dir="ltr"] .floating-action-button {
+  right: 1.25rem;
+  left: auto;
+}
+

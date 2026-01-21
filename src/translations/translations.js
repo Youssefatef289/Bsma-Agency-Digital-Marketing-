@@ -3,8 +3,8 @@ export const translations = {
     nav: {
       home: 'Home',
       about: 'About Us',
-      portfolio: 'Portfolio',
       contact: 'Contact',
+      portfolio: 'Portfolio',
       getStarted: 'Get Started',
     },
     home: {
@@ -109,8 +109,8 @@ export const translations = {
     nav: {
       home: 'الرئيسية',
       about: 'من نحن',
-      portfolio: 'أعمالنا',
       contact: 'تواصل معنا',
+      portfolio: 'معرض الأعمال',
       getStarted: 'ابدأ الآن',
     },
     home: {

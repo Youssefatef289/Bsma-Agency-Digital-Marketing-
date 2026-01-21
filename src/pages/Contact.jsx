@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Send, Phone, Mail, MapPin, MessageCircle, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react'
+import { Send, Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaTelegram, FaWhatsapp, FaTiktok, FaSnapchat } from 'react-icons/fa'
 import { useLanguage } from '../contexts/LanguageContext'
 import { translations } from '../translations/translations'
 
@@ -63,10 +64,14 @@ const Contact = () => {
   ]
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook', color: 'hover:bg-blue-600' },
-    { icon: Instagram, href: '#', label: 'Instagram', color: 'hover:bg-pink-600' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:bg-blue-700' },
-    { icon: Youtube, href: '#', label: 'YouTube', color: 'hover:bg-red-600' },
+    { icon: FaFacebook, href: '#', label: 'Facebook', color: 'bg-blue-600 hover:bg-blue-700' },
+    { icon: FaInstagram, href: '#', label: 'Instagram', color: 'bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:opacity-90' },
+    { icon: FaLinkedin, href: '#', label: 'LinkedIn', color: 'bg-blue-700 hover:bg-blue-800' },
+    { icon: FaYoutube, href: '#', label: 'YouTube', color: 'bg-red-600 hover:bg-red-700' },
+    { icon: FaTelegram, href: '#', label: 'Telegram', color: 'bg-blue-500 hover:bg-blue-600' },
+    { icon: FaWhatsapp, href: '#', label: 'WhatsApp', color: 'bg-green-500 hover:bg-green-600' },
+    { icon: FaTiktok, href: '#', label: 'TikTok', color: 'bg-black hover:bg-gray-800' },
+    { icon: FaSnapchat, href: '#', label: 'Snapchat', color: 'bg-yellow-400 hover:bg-yellow-500 text-black' },
   ]
 
   const whatsappNumber = '201234567890'
@@ -226,7 +231,7 @@ const Contact = () => {
               {/* Social Media */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.followUs}</h3>
-                <div className={`flex ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+                <div className="grid grid-cols-4 gap-3">
                   {socialLinks.map((social) => {
                     const Icon = social.icon
                     return (
@@ -235,10 +240,10 @@ const Contact = () => {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`flex-1 bg-gray-100 p-4 rounded-lg text-center ${social.color} text-white transition-all transform hover:scale-105`}
+                        className={`p-4 rounded-lg text-center ${social.color} text-white transition-all transform hover:scale-110 shadow-md hover:shadow-lg flex items-center justify-center`}
                         aria-label={social.label}
                       >
-                        <Icon size={24} className="mx-auto" />
+                        <Icon size={24} />
                       </a>
                     )
                   })}
