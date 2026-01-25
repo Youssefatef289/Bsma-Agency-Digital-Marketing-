@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useRef, useEffect, useState } from 'react'
-import { ArrowRight, ArrowLeft, Palette, Megaphone, Share2, Video, Globe, CheckCircle, TrendingUp, Users, Award, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Palette, Megaphone, Share2, Video, Globe, CheckCircle, TrendingUp, Users, Award, ChevronLeft, ChevronRight, Bird } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { translations } from '../translations/translations'
 import heroIllustration from '../assets/illustrations/hero-illustration.svg'
@@ -253,204 +253,95 @@ const Home = () => {
 
   return (
     <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-      {/* Hero Section - Merged with Navbar */}
-      <section className={`relative bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900 text-white overflow-hidden min-h-[100vh] flex items-center pt-20 ${isRTL ? 'text-right' : 'text-left'}`}>
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute inset-0 opacity-60">
-          <img
-            src={heroIllustration}
-            alt=""
-            className="w-full h-full object-cover"
-            aria-hidden="true"
-          />
-        </div>
-        
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at ${isRTL ? '20%' : '80%'} 50%, rgba(168, 85, 247, 0.4) 0%, transparent 60%)`,
-        }}></div>
-        
-        {/* Animated Blob Effects */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse`}></div>
-          <div className={`absolute ${isRTL ? 'right-0' : 'left-0'} bottom-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse`} style={{ animationDelay: '1s' }}></div>
-        </div>
+      {/* Hero Section - Clean White Background */}
+      <section className={`relative bg-white overflow-hidden min-h-[90vh] flex items-center pt-20 ${isRTL ? 'text-right' : 'text-left'}`}>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
           <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${isRTL ? 'lg:grid-flow-dense' : ''}`}>
             {/* Text Content */}
             <div className={`animate-fade-in ${isRTL ? 'lg:col-start-2 lg:col-end-3' : 'lg:col-start-1 lg:col-end-2'}`}>
-              {/* Badge */}
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-purple-200">
+              {/* Badge - Animated */}
+              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 mb-6 animate-slide-up ${isRTL ? 'flex-row-reverse' : ''}`} style={{ animationDelay: '0.1s' }}>
+                <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-purple-700">
                   {language === 'en' ? 'Digital Marketing Agency' : 'وكالة تسويق رقمي'}
                 </span>
               </div>
               
-              {/* Main Title */}
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+              {/* Main Title - Animated */}
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 text-gray-900 animate-slide-up ${isRTL ? 'text-right' : 'text-left'}`} style={{ animationDelay: '0.2s' }}>
                 <span className="block mb-2">{t.home.heroTitle}</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-300 to-orange-300 mt-2">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 mt-2 animate-gradient">
                   {t.home.heroSubtitle}
                 </span>
               </h1>
               
-              {/* Description */}
-              <p className={`text-lg md:text-xl lg:text-2xl text-purple-100 mb-10 leading-relaxed max-w-2xl ${isRTL ? 'text-right ml-auto' : 'text-left'}`}>
+              {/* Description - Animated */}
+              <p className={`text-lg md:text-xl lg:text-2xl text-gray-600 mb-10 leading-relaxed max-w-2xl animate-slide-up ${isRTL ? 'text-right ml-auto' : 'text-left'}`} style={{ animationDelay: '0.3s' }}>
                 {t.home.heroDescription}
               </p>
               
-              {/* Buttons - Better Organized */}
-              <div className={`flex flex-col sm:flex-row gap-4 items-start ${isRTL ? 'sm:flex-row-reverse sm:justify-end' : 'sm:justify-start'}`}>
+              {/* Buttons - Visible and Prominent */}
+              <div className={`flex flex-col sm:flex-row gap-4 items-start ${isRTL ? 'sm:flex-row-reverse sm:justify-end' : 'sm:justify-start'} opacity-100`} style={{ animation: 'slideUp 0.6s ease-out 0.4s both' }}>
                 <Link
                   to="/contact"
-                  className={`group relative bg-gradient-to-r from-white to-purple-50 text-purple-600 px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3 min-w-[200px] ${isRTL ? 'flex-row-reverse' : ''}`}
+                  className={`group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:from-purple-700 hover:to-pink-700 flex items-center justify-center gap-3 min-w-[200px] z-10 ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
                   <span>{t.nav.getStarted}</span>
                   <ArrowIcon size={20} className="group-hover:translate-x-1 transition-transform" style={{ transform: isRTL ? 'scaleX(-1)' : 'none' }} />
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
                 </Link>
                 <Link
                   to="/about"
-                  className={`group relative bg-transparent border-2 border-white/80 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm flex items-center justify-center gap-3 min-w-[200px] ${isRTL ? 'flex-row-reverse' : ''}`}
+                  className={`group relative bg-white border-2 border-purple-200 text-purple-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 hover:border-purple-300 hover:text-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 min-w-[200px] z-10 ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
                   <span>{t.home.learnMore}</span>
-                  <div className="absolute inset-0 border-2 border-purple-400 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </Link>
               </div>
               
-              {/* Stats Preview */}
-              <div className={`mt-12 flex flex-wrap gap-6 ${isRTL ? 'justify-end' : 'justify-start'}`}>
+              {/* Stats Preview - Animated */}
+              <div className={`mt-12 flex flex-wrap gap-6 animate-slide-up ${isRTL ? 'justify-end' : 'justify-start'}`} style={{ animationDelay: '0.5s' }}>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1">20+</div>
-                  <div className="text-sm text-purple-200">{language === 'en' ? 'Clients' : 'عميل'}</div>
+                  <div className="text-3xl font-bold text-gray-900 mb-1">20+</div>
+                  <div className="text-sm text-gray-600">{language === 'en' ? 'Clients' : 'عميل'}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1">60+</div>
-                  <div className="text-sm text-purple-200">{language === 'en' ? 'Projects' : 'مشروع'}</div>
+                  <div className="text-3xl font-bold text-gray-900 mb-1">60+</div>
+                  <div className="text-sm text-gray-600">{language === 'en' ? 'Projects' : 'مشروع'}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-1">2+</div>
-                  <div className="text-sm text-purple-200">{language === 'en' ? 'Years' : 'سنة'}</div>
+                  <div className="text-3xl font-bold text-gray-900 mb-1">2+</div>
+                  <div className="text-sm text-gray-600">{language === 'en' ? 'Years' : 'سنة'}</div>
                 </div>
               </div>
             </div>
             
-            {/* Image Content with Business Man SVG */}
-            <div className={`animate-slide-in-right hidden lg:block ${isRTL ? 'lg:col-start-1 lg:col-end-2' : 'lg:col-start-2 lg:col-end-3'}`}>
+            {/* Image Content - Animated - Visible on All Screens */}
+            <div className={`animate-slide-in-right ${isRTL ? 'lg:col-start-1 lg:col-end-2' : 'lg:col-start-2 lg:col-end-3'}`} style={{ animationDelay: '0.3s' }}>
               <div className="relative">
-                {/* Decorative Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-500 to-orange-400 rounded-3xl transform ${isRTL ? 'rotate-6' : '-rotate-6'} opacity-20 blur-xl`}></div>
-                <div className={`absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-500 rounded-3xl transform ${isRTL ? 'rotate-3' : '-rotate-3'} opacity-30`}></div>
-                
-                {/* Image Container */}
-                <div className="relative bg-white/10 backdrop-blur-md rounded-3xl p-6 lg:p-8 border border-white/20 shadow-2xl overflow-hidden">
-                  {/* Business Man SVG - Professional Design */}
-                  <svg
-                    viewBox="0 0 400 500"
-                    className="w-full h-auto"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <defs>
-                      <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#a855f7" stopOpacity="1" />
-                        <stop offset="100%" stopColor="#ec4899" stopOpacity="1" />
-                      </linearGradient>
-                      <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#f97316" stopOpacity="1" />
-                        <stop offset="100%" stopColor="#ec4899" stopOpacity="1" />
-                      </linearGradient>
-                      <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge>
-                          <feMergeNode in="coloredBlur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    
-                    {/* Background Glow */}
-                    <circle cx="200" cy="250" r="180" fill="url(#gradient1)" opacity="0.2" />
-                    
-                    {/* Head with Hair */}
-                    <circle cx="200" cy="120" r="45" fill="#fff" opacity="0.95" />
-                    <path d="M 155 100 Q 200 80 245 100 Q 240 90 200 85 Q 160 90 155 100" fill="#4a5568" opacity="0.8" />
-                    
-                    {/* Face Features */}
-                    <circle cx="185" cy="115" r="3" fill="#2d3748" />
-                    <circle cx="215" cy="115" r="3" fill="#2d3748" />
-                    <path d="M 185 130 Q 200 135 215 130" stroke="#2d3748" strokeWidth="2" fill="none" strokeLinecap="round" />
-                    
-                    {/* Body - Professional Suit */}
-                    <path
-                      d="M 150 200 Q 150 190 160 185 L 200 175 L 240 185 Q 250 190 250 200 L 250 380 L 150 380 Z"
-                      fill="url(#gradient1)"
-                      opacity="0.95"
+                {/* Image Container - Clean Design Without Shadow */}
+                <div className="relative bg-white rounded-3xl p-4 lg:p-6 border-2 border-purple-100 overflow-hidden group transition-all duration-500">
+                  {/* Hero Image - Animated */}
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <img
+                      src="/image/hero-animation.svg"
+                      alt={language === 'en' ? 'Digital Marketing Agency' : 'وكالة تسويق رقمي'}
+                      className="w-full h-auto object-cover animate-image-float group-hover:scale-105 transition-transform duration-700"
+                      onError={(e) => {
+                        // Fallback to logo if hero image doesn't exist
+                        e.target.src = '/image/logo - blue 2.png'
+                      }}
                     />
-                    
-                    {/* Suit Collar */}
-                    <path d="M 180 200 L 200 185 L 220 200" stroke="#fff" strokeWidth="3" fill="none" />
-                    
-                    {/* Tie */}
-                    <path d="M 200 185 L 195 250 L 205 250 Z" fill="#fff" opacity="0.9" />
-                    <rect x="197" y="250" width="6" height="90" fill="#fff" opacity="0.9" rx="3" />
-                    <path d="M 197 340 Q 200 350 203 340" fill="#fff" opacity="0.9" />
-                    
-                    {/* Left Arm */}
-                    <ellipse cx="125" cy="280" rx="22" ry="55" fill="url(#gradient1)" opacity="0.95" />
-                    <circle cx="125" cy="335" r="18" fill="#fff" opacity="0.95" />
-                    
-                    {/* Right Arm with Briefcase */}
-                    <ellipse cx="275" cy="280" rx="22" ry="55" fill="url(#gradient1)" opacity="0.95" />
-                    <circle cx="275" cy="335" r="18" fill="#fff" opacity="0.95" />
-                    
-                    {/* Briefcase */}
-                    <rect x="285" y="340" width="50" height="35" fill="url(#gradient2)" opacity="0.95" rx="2" />
-                    <rect x="290" y="345" width="40" height="25" fill="#fff" opacity="0.4" />
-                    <line x1="310" y1="340" x2="310" y2="375" stroke="#fff" strokeWidth="1.5" opacity="0.6" />
-                    <circle cx="300" cy="350" r="2" fill="#fff" opacity="0.6" />
-                    <circle cx="320" cy="350" r="2" fill="#fff" opacity="0.6" />
-                    
-                    {/* Legs */}
-                    <rect x="165" y="380" width="28" height="95" fill="url(#gradient2)" opacity="0.95" rx="3" />
-                    <rect x="207" y="380" width="28" height="95" fill="url(#gradient2)" opacity="0.95" rx="3" />
-                    
-                    {/* Shoes */}
-                    <ellipse cx="179" cy="480" rx="18" ry="7" fill="#1a1a1a" opacity="0.95" />
-                    <ellipse cx="221" cy="480" rx="18" ry="7" fill="#1a1a1a" opacity="0.95" />
-                    
-                    {/* Success Icons - Animated */}
-                    <g filter="url(#glow)">
-                      <circle cx="90" cy="140" r="22" fill="url(#gradient1)" opacity="0.7">
-                        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
-                      </circle>
-                      <text x="90" y="148" textAnchor="middle" fill="#fff" fontSize="18" fontWeight="bold">✓</text>
-                      
-                      <circle cx="310" cy="140" r="22" fill="url(#gradient2)" opacity="0.7">
-                        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" begin="0.5s" repeatCount="indefinite" />
-                      </circle>
-                      <text x="310" y="148" textAnchor="middle" fill="#fff" fontSize="18" fontWeight="bold">↑</text>
-                      
-                      <circle cx="90" cy="360" r="22" fill="url(#gradient2)" opacity="0.7">
-                        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" begin="1s" repeatCount="indefinite" />
-                      </circle>
-                      <text x="90" y="368" textAnchor="middle" fill="#fff" fontSize="18" fontWeight="bold">★</text>
-                      
-                      <circle cx="310" cy="360" r="22" fill="url(#gradient1)" opacity="0.7">
-                        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" begin="1.5s" repeatCount="indefinite" />
-                      </circle>
-                      <text x="310" y="368" textAnchor="middle" fill="#fff" fontSize="18" fontWeight="bold">📈</text>
-                    </g>
-                    
-                    {/* Decorative Lines */}
-                    <path d="M 200 50 Q 250 100 200 150" stroke="url(#gradient1)" strokeWidth="2" fill="none" opacity="0.3" />
-                    <path d="M 200 350 Q 150 400 200 450" stroke="url(#gradient2)" strokeWidth="2" fill="none" opacity="0.3" />
-                  </svg>
+                    {/* Gradient Overlay on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
                   
-                  {/* Floating Badge */}
-                  <div className={`absolute ${isRTL ? 'left-4' : 'right-4'} -top-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce`}>
+                  {/* Floating Bird Icon - Animated */}
+                  <div className={`absolute ${isRTL ? 'left-4' : 'right-4'} -top-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 rounded-full animate-bounce flex items-center justify-center`}>
+                    <Bird size={20} className="animate-float" />
+                  </div>
+                  
+                  {/* Floating Badge - Animated */}
+                  <div className={`absolute ${isRTL ? 'right-4' : 'left-4'} -bottom-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse`}>
                     {language === 'en' ? '✨ Premium Quality' : '✨ جودة ممتازة'}
                   </div>
                 </div>

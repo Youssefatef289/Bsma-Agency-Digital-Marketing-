@@ -29,27 +29,21 @@ const Navbar = () => {
   const isRTL = language === 'ar'
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : 'navbar-transparent'} ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+    <nav className={`navbar navbar-scrolled ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
       <div className="navbar-container">
         <div className={`navbar-content ${isRTL ? 'flex-row-reverse' : ''}`}>
-          {/* Logo - يظهر على اليسار في EN وعلى اليمين في AR */}
+          {/* Logo - Always visible with blue logo */}
           <Link 
             to="/" 
             className="navbar-logo"
           >
             <img
-              src={scrolled ? "/image/logo - blue 2.png" : "/image/logo-white.png"}
-              alt="Bama Agency Digital Marketing"
-              className={`navbar-logo-img transition-all duration-300 ${
-                !scrolled ? 'brightness-0 invert' : ''
-              }`}
-              style={!scrolled ? { filter: 'brightness(0) invert(1)' } : {}}
+              src="/image/logo - blue 2.png"
+              alt="Bsma Agency Digital Marketing"
+              className="navbar-logo-img transition-all duration-300"
               onError={(e) => {
-                // Fallback to blue logo if white logo doesn't exist
-                if (e.target.src.includes('logo-white')) {
-                  e.target.src = "/image/logo - blue 2.png"
-                  e.target.style.filter = 'brightness(0) invert(1)'
-                }
+                // Fallback
+                e.target.src = "/image/Logo-bsma (1).png"
               }}
             />
           </Link>
@@ -65,12 +59,8 @@ const Navbar = () => {
                     to={link.path}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 whitespace-nowrap ${
                       location.pathname === link.path
-                        ? scrolled 
-                          ? 'text-purple-600 font-bold bg-purple-50' 
-                          : 'text-white font-bold bg-white/10'
-                        : scrolled
-                        ? 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
-                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                        ? 'text-purple-600 font-bold bg-purple-50 border border-purple-200'
+                        : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50'
                     }`}
                   >
                     {link.label}
@@ -79,24 +69,16 @@ const Navbar = () => {
                 {/* زر اللغة */}
                 <button
                   onClick={toggleLanguage}
-                  className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 border min-w-[80px] ${
-                    scrolled
-                      ? 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
-                      : 'bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30'
-                  }`}
-                  title="التبديل إلى الإنجليزية"
+                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300 min-w-[80px]"
+                  title={language === 'en' ? 'التبديل إلى العربية' : 'Switch to English'}
                 >
                   <Languages size={18} />
-                  <span className="text-sm font-medium">EN</span>
+                  <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
                 </button>
                 {/* زر Get Started */}
                 <Link
                   to="/contact"
-                  className={`px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg whitespace-nowrap ${
-                    scrolled
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
-                      : 'bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30'
-                  }`}
+                  className="px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/25 whitespace-nowrap bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700"
                 >
                   {t.nav.getStarted}
                 </Link>
@@ -110,12 +92,8 @@ const Navbar = () => {
                     to={link.path}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 whitespace-nowrap ${
                       location.pathname === link.path
-                        ? scrolled 
-                          ? 'text-purple-600 font-bold bg-purple-50' 
-                          : 'text-white font-bold bg-white/10'
-                        : scrolled
-                        ? 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
-                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                        ? 'text-purple-600 font-bold bg-purple-50 border border-purple-200'
+                        : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50'
                     }`}
                   >
                     {link.label}
@@ -123,11 +101,7 @@ const Navbar = () => {
                 ))}
                 <button
                   onClick={toggleLanguage}
-                  className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 border min-w-[80px] ${
-                    scrolled
-                      ? 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
-                      : 'bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30'
-                  }`}
+                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300 min-w-[80px]"
                   title="Switch to Arabic"
                 >
                   <Languages size={18} />
@@ -135,11 +109,7 @@ const Navbar = () => {
                 </button>
                 <Link
                   to="/contact"
-                  className={`px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg whitespace-nowrap ${
-                    scrolled
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
-                      : 'bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30'
-                  }`}
+                  className="px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/25 whitespace-nowrap bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700"
                 >
                   {t.nav.getStarted}
                 </Link>
@@ -151,11 +121,7 @@ const Navbar = () => {
           <div className={`navbar-mobile ${isRTL ? 'flex-row-reverse' : ''}`}>
             <button
               onClick={toggleLanguage}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 border ${
-                scrolled
-                  ? 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
-                  : 'bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30'
-              }`}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300"
               title={language === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'}
             >
               <Languages size={18} />
@@ -163,9 +129,7 @@ const Navbar = () => {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`transition-all duration-300 transform hover:scale-110 ${
-                scrolled ? 'text-gray-800 hover:text-purple-600' : 'text-white hover:text-white/80'
-              }`}
+              className="text-gray-800 hover:text-purple-600 transition-all duration-300 transform hover:scale-110"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -194,11 +158,7 @@ const Navbar = () => {
             <Link
               to="/contact"
               onClick={() => setIsOpen(false)}
-              className={`block text-center mt-4 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
-                scrolled
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
-                  : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
-              }`}
+              className="block text-center mt-4 px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-lg"
             >
               {t.nav.getStarted}
             </Link>

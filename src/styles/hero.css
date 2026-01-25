@@ -1,8 +1,8 @@
-/* Hero Section Styles */
+/* Hero Section Styles - White Background */
 .hero-section {
   position: relative;
-  background: linear-gradient(to bottom right, #581c87, #6b21a8, #581c87);
-  color: white;
+  background: white;
+  color: #111827;
   overflow: hidden;
 }
 
