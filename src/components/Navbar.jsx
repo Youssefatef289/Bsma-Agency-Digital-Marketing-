@@ -38,63 +38,84 @@ const Navbar = () => {
             className="navbar-logo"
           >
             <img
-              src="/image/logo - blue 2.png"
+              src={scrolled ? "/image/logo - blue 2.png" : "/image/logo-white.png"}
               alt="Bama Agency Digital Marketing"
-              className="navbar-logo-img"
+              className={`navbar-logo-img transition-all duration-300 ${
+                !scrolled ? 'brightness-0 invert' : ''
+              }`}
+              style={!scrolled ? { filter: 'brightness(0) invert(1)' } : {}}
+              onError={(e) => {
+                // Fallback to blue logo if white logo doesn't exist
+                if (e.target.src.includes('logo-white')) {
+                  e.target.src = "/image/logo - blue 2.png"
+                  e.target.style.filter = 'brightness(0) invert(1)'
+                }
+              }}
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className={`navbar-desktop ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
-            {/* في العربية: الترتيب معكوس تماماً - زر Get Started أولاً، ثم زر اللغة، ثم الروابط */}
+          <div className={`navbar-desktop ${isRTL ? 'flex-row-reverse' : ''} ${isRTL ? 'space-x-reverse space-x-6' : 'space-x-6'}`}>
             {isRTL ? (
               <>
-                {/* زر Get Started - أول عنصر في العربية */}
-                <Link
-                  to="/contact"
-                  className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  {t.nav.getStarted}
-                </Link>
-                {/* زر اللغة */}
-                <button
-                  onClick={toggleLanguage}
-                  className="navbar-language-button"
-                  title="التبديل إلى الإنجليزية"
-                >
-                  <Languages size={18} className="navbar-language-icon" />
-                  <span className="text-sm font-medium">EN</span>
-                </button>
-                {/* الروابط - معكوسة */}
-                {navLinks.slice().reverse().map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                      location.pathname === link.path
-                        ? 'text-blue-600 font-bold'
-                        : scrolled
-                        ? 'text-gray-700 hover:text-blue-600'
-                        : 'text-gray-800 hover:text-blue-600'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </>
-            ) : (
-              <>
-                {/* في الإنجليزية: الروابط أولاً، ثم زر اللغة، ثم زر Get Started */}
+                {/* العربية: الروابط أولاً (من اليمين لليسار)، ثم زر اللغة، ثم زر Get Started */}
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 whitespace-nowrap ${
                       location.pathname === link.path
-                        ? 'text-blue-600 font-bold'
+                        ? scrolled 
+                          ? 'text-purple-600 font-bold bg-purple-50' 
+                          : 'text-white font-bold bg-white/10'
                         : scrolled
-                        ? 'text-gray-700 hover:text-blue-600'
-                        : 'text-gray-800 hover:text-blue-600'
+                        ? 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
+                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                {/* زر اللغة */}
+                <button
+                  onClick={toggleLanguage}
+                  className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 border min-w-[80px] ${
+                    scrolled
+                      ? 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+                      : 'bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30'
+                  }`}
+                  title="التبديل إلى الإنجليزية"
+                >
+                  <Languages size={18} />
+                  <span className="text-sm font-medium">EN</span>
+                </button>
+                {/* زر Get Started */}
+                <Link
+                  to="/contact"
+                  className={`px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg whitespace-nowrap ${
+                    scrolled
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
+                      : 'bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30'
+                  }`}
+                >
+                  {t.nav.getStarted}
+                </Link>
+              </>
+            ) : (
+              <>
+                {/* الإنجليزية: الروابط أولاً، ثم زر اللغة، ثم زر Get Started */}
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 whitespace-nowrap ${
+                      location.pathname === link.path
+                        ? scrolled 
+                          ? 'text-purple-600 font-bold bg-purple-50' 
+                          : 'text-white font-bold bg-white/10'
+                        : scrolled
+                        ? 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
+                        : 'text-white/90 hover:text-white hover:bg-white/10'
                     }`}
                   >
                     {link.label}
@@ -102,15 +123,23 @@ const Navbar = () => {
                 ))}
                 <button
                   onClick={toggleLanguage}
-                  className="navbar-language-button"
+                  className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 border min-w-[80px] ${
+                    scrolled
+                      ? 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+                      : 'bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30'
+                  }`}
                   title="Switch to Arabic"
                 >
-                  <Languages size={18} className="navbar-language-icon" />
+                  <Languages size={18} />
                   <span className="text-sm font-medium">AR</span>
                 </button>
                 <Link
                   to="/contact"
-                  className="navbar-cta-button"
+                  className={`px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg whitespace-nowrap ${
+                    scrolled
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
+                      : 'bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30'
+                  }`}
                 >
                   {t.nav.getStarted}
                 </Link>
@@ -122,15 +151,21 @@ const Navbar = () => {
           <div className={`navbar-mobile ${isRTL ? 'flex-row-reverse' : ''}`}>
             <button
               onClick={toggleLanguage}
-              className="navbar-language-button"
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 border ${
+                scrolled
+                  ? 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+                  : 'bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30'
+              }`}
               title={language === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'}
             >
-              <Languages size={18} className="navbar-language-icon" />
+              <Languages size={18} />
               <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="transition-all duration-300 transform hover:scale-110 text-gray-800 hover:text-blue-600"
+              className={`transition-all duration-300 transform hover:scale-110 ${
+                scrolled ? 'text-gray-800 hover:text-purple-600' : 'text-white hover:text-white/80'
+              }`}
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -141,16 +176,16 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {isOpen && (
         <div className={`navbar-mobile-menu ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
-          <div className={`px-4 pt-2 pb-4 space-y-1 ${isRTL ? 'text-right' : 'text-left'}`}>
+          <div className={`px-4 pt-2 pb-4 space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className={`navbar-mobile-link ${
+                className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
                   location.pathname === link.path
-                    ? 'navbar-mobile-link-active'
-                    : 'navbar-mobile-link-inactive'
+                    ? 'text-purple-600 font-bold bg-purple-50'
+                    : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
                 }`}
               >
                 {link.label}
@@ -159,7 +194,11 @@ const Navbar = () => {
             <Link
               to="/contact"
               onClick={() => setIsOpen(false)}
-              className="navbar-cta-button block text-center mt-4"
+              className={`block text-center mt-4 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                scrolled
+                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
+                  : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
+              }`}
             >
               {t.nav.getStarted}
             </Link>

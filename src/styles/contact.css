@@ -1,6 +1,6 @@
 /* Contact Page Styles */
 .contact-hero {
-  background: linear-gradient(to bottom right, #1e3a8a, #1e40af, #1e3a8a);
+  background: linear-gradient(to bottom right, #581c87, #6b21a8, #581c87);
   color: white;
   padding: 5rem 0;
 }
@@ -136,7 +136,7 @@
 
 .contact-form-button {
   width: 100%;
-  background: #2563eb;
+  background: #9333ea;
   color: white;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
@@ -206,11 +206,11 @@
 }
 
 .contact-info-item:hover .contact-info-icon-wrapper {
-  background: #2563eb;
+  background: #9333ea;
 }
 
 .contact-info-icon {
-  color: #2563eb;
+  color: #9333ea;
   width: 1.5rem;
   height: 1.5rem;
   transition: color 0.3s;

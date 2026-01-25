@@ -3,6 +3,7 @@ import { LanguageProvider, useLanguage } from './contexts/LanguageContext.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import FloatingActionButton from './components/FloatingActionButton.jsx'
+import LoadingScreen from './components/LoadingScreen.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
@@ -13,6 +14,7 @@ const AppContent = () => {
 
   return (
     <Router>
+      <LoadingScreen />
       <div className={`min-h-screen flex flex-col transition-all duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
         <Navbar />
         <main className="flex-grow page-transition">

@@ -22,11 +22,37 @@
     @apply bg-gray-50 text-gray-900;
     font-family: "Josefin Sans", sans-serif;
   }
+  
+  /* Arabic Font - Noto Kufi Arabic */
+  [dir="rtl"],
+  [dir="rtl"] * {
+    font-family: "Noto Kufi Arabic", sans-serif !important;
+  }
+  
+  [dir="rtl"] body {
+    font-family: "Noto Kufi Arabic", sans-serif !important;
+  }
+  
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6,
+  [dir="rtl"] p,
+  [dir="rtl"] span,
+  [dir="rtl"] a,
+  [dir="rtl"] button,
+  [dir="rtl"] li,
+  [dir="rtl"] div {
+    font-family: "Noto Kufi Arabic", sans-serif !important;
+    letter-spacing: 0 !important;
+  }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent;
   }
   
   .animate-fade-in {

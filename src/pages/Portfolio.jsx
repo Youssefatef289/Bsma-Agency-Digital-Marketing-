@@ -132,7 +132,10 @@ const Portfolio = () => {
 
   const openLightbox = (index) => {
     setCurrentImageIndex(index)
-    setLightboxOpen(true)
+    // Small delay for smooth transition
+    setTimeout(() => {
+      setLightboxOpen(true)
+    }, 50)
   }
 
   const closeLightbox = () => {
@@ -140,15 +143,58 @@ const Portfolio = () => {
   }
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % graphicDesignImages.length)
+    setCurrentImageIndex((prev) => {
+      const next = (prev + 1) % graphicDesignImages.length
+      return next
+    })
   }
 
   const previousImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + graphicDesignImages.length) % graphicDesignImages.length)
+    setCurrentImageIndex((prev) => {
+      const newIndex = (prev - 1 + graphicDesignImages.length) % graphicDesignImages.length
+      return newIndex
+    })
   }
 
-  // Show all images in grid, but limit initial display
-  const displayedGraphicImages = graphicDesignImages.slice(0, 12)
+  // Handle swipe gestures for mobile
+  useEffect(() => {
+    if (!lightboxOpen) return
+
+    let touchStartX = 0
+    let touchEndX = 0
+
+    const handleTouchStart = (e) => {
+      touchStartX = e.changedTouches[0].screenX
+    }
+
+    const handleTouchEnd = (e) => {
+      touchEndX = e.changedTouches[0].screenX
+      const swipeThreshold = 50
+      const diff = touchStartX - touchEndX
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - next image
+          setCurrentImageIndex((prev) => (prev + 1) % graphicDesignImages.length)
+        } else {
+          // Swipe right - previous image
+          setCurrentImageIndex((prev) => (prev - 1 + graphicDesignImages.length) % graphicDesignImages.length)
+        }
+      }
+    }
+
+    document.addEventListener('touchstart', handleTouchStart)
+    document.addEventListener('touchend', handleTouchEnd)
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('touchend', handleTouchEnd)
+    }
+  }, [lightboxOpen, graphicDesignImages.length])
+
+  // Show all images
+  const [showAllImages, setShowAllImages] = useState(false)
+  const displayedGraphicImages = showAllImages ? graphicDesignImages : graphicDesignImages.slice(0, 12)
 
   return (
     <div className={`pt-20 transition-all duration-300 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
@@ -211,44 +257,48 @@ const Portfolio = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {displayedGraphicImages.map((image, index) => {
                 const fullIndex = graphicDesignImages.findIndex(img => img.src === image.src)
                 return (
                   <div
                     key={index}
                     onClick={() => openLightbox(fullIndex >= 0 ? fullIndex : index)}
-                    className="group relative overflow-hidden rounded-lg cursor-pointer bg-gray-200 aspect-square"
+                    className="group relative overflow-hidden rounded-xl cursor-pointer bg-gray-200 aspect-square transform transition-all duration-700 ease-out hover:scale-[1.05] hover:shadow-2xl hover:z-10 animate-fade-in"
+                    style={{ animationDelay: `${(index % 12) * 0.05}s` }}
                   >
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                       loading="lazy"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0 text-white text-sm font-semibold bg-black/70 px-6 py-3 rounded-lg backdrop-blur-md border border-white/30 shadow-xl">
                         {language === 'en' ? 'Click to view' : 'اضغط للعرض'}
                       </div>
                     </div>
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+                    </div>
+                    {/* Border glow effect */}
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/20 rounded-xl transition-all duration-500"></div>
                   </div>
                 )
               })}
             </div>
 
-            {graphicDesignImages.length > 12 && (
-              <div className="text-center mt-8">
+            {graphicDesignImages.length > 12 && !showAllImages && (
+              <div className="text-center mt-12">
                 <button
-                  onClick={() => {
-                    setCurrentImageIndex(0)
-                    setLightboxOpen(true)
-                  }}
-                  className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105"
+                  onClick={() => setShowAllImages(true)}
+                  className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg"
                 >
-                  {language === 'en' ? `View All ${graphicDesignImages.length} Images` : `عرض جميع الصور (${graphicDesignImages.length})`}
+                  {language === 'en' ? `Load More (${graphicDesignImages.length - 12} more)` : `عرض المزيد (${graphicDesignImages.length - 12} صورة أخرى)`}
                 </button>
               </div>
             )}

@@ -1,7 +1,7 @@
 /* CTA Section Styles */
 .cta-section {
   padding: 5rem 0;
-  background: linear-gradient(to right, #2563eb, #1e40af);
+  background: linear-gradient(to right, #9333ea, #ec4899, #f97316);
   color: white;
   position: relative;
   overflow: hidden;
@@ -49,7 +49,7 @@
 .cta-button {
   display: inline-block;
   background: white;
-  color: #2563eb;
+  color: #9333ea;
   padding: 1rem 2.5rem;
   border-radius: 0.5rem;
   font-weight: 700;

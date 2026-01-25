@@ -64,14 +64,14 @@ const Contact = () => {
   ]
 
   const socialLinks = [
-    { icon: FaFacebook, href: '#', label: 'Facebook', color: 'bg-blue-600 hover:bg-blue-700' },
-    { icon: FaInstagram, href: '#', label: 'Instagram', color: 'bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:opacity-90' },
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn', color: 'bg-blue-700 hover:bg-blue-800' },
-    { icon: FaYoutube, href: '#', label: 'YouTube', color: 'bg-red-600 hover:bg-red-700' },
-    { icon: FaTelegram, href: '#', label: 'Telegram', color: 'bg-blue-500 hover:bg-blue-600' },
-    { icon: FaWhatsapp, href: '#', label: 'WhatsApp', color: 'bg-green-500 hover:bg-green-600' },
-    { icon: FaTiktok, href: '#', label: 'TikTok', color: 'bg-black hover:bg-gray-800' },
-    { icon: FaSnapchat, href: '#', label: 'Snapchat', color: 'bg-yellow-400 hover:bg-yellow-500 text-black' },
+    { icon: FaFacebook, href: '#', label: 'Facebook', color: 'bg-[#1877F2] hover:bg-[#166FE5]' },
+    { icon: FaInstagram, href: '#', label: 'Instagram', color: 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] hover:opacity-90' },
+    { icon: FaLinkedin, href: '#', label: 'LinkedIn', color: 'bg-[#0077B5] hover:bg-[#006399]' },
+    { icon: FaYoutube, href: '#', label: 'YouTube', color: 'bg-[#FF0000] hover:bg-[#CC0000]' },
+    { icon: FaTelegram, href: '#', label: 'Telegram', color: 'bg-[#0088CC] hover:bg-[#0077B3]' },
+    { icon: FaWhatsapp, href: '#', label: 'WhatsApp', color: 'bg-[#25D366] hover:bg-[#20BA5A]' },
+    { icon: FaTiktok, href: '#', label: 'TikTok', color: 'bg-[#000000] hover:bg-[#1A1A1A]' },
+    { icon: FaSnapchat, href: '#', label: 'Snapchat', color: 'bg-[#FFFC00] hover:bg-[#FFE600] text-black' },
   ]
 
   const whatsappNumber = '201234567890'

@@ -1,7 +1,7 @@
 /* Portfolio Page Styles */
 
 .portfolio-hero {
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1e3a8a 100%);
+  background: linear-gradient(135deg, #581c87 0%, #6b21a8 50%, #581c87 100%);
   color: white;
   padding: 5rem 0;
 }
@@ -33,7 +33,7 @@
 }
 
 .portfolio-filter-button-active {
-  background: #2563eb;
+  background: #9333ea;
   color: white;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
@@ -169,7 +169,7 @@
 }
 
 .portfolio-view-all-button {
-  background: #2563eb;
+  background: #9333ea;
   color: white;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;

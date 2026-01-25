@@ -18,42 +18,42 @@ const FloatingActionButton = () => {
       name: 'Telegram',
       icon: FaTelegramPlane,
       href: 'https://t.me/your_telegram', // Replace with your Telegram link
-      color: 'bg-gradient-to-b from-[#017AB1] to-[#01ABE6]',
+      color: 'bg-[#0088CC]',
       delay: 'delay-0',
     },
     {
       name: 'WhatsApp',
       icon: FaWhatsapp,
       href: 'https://wa.me/your_whatsapp', // Replace with your WhatsApp link
-      color: 'bg-gradient-to-b from-[#00B100] to-[#09db09]',
+      color: 'bg-[#25D366]',
       delay: 'delay-75',
     },
     {
       name: 'Messenger',
       icon: FaFacebookMessenger,
       href: 'https://m.me/your_messenger', // Replace with your Messenger link
-      color: 'bg-gradient-to-b from-[#0078FF] to-[#00C6FF]',
+      color: 'bg-[#0084FF]',
       delay: 'delay-100',
     },
     {
       name: 'Instagram',
       icon: FaInstagram,
       href: 'https://www.instagram.com/ma8535128?igsh=NXF1ejJpdGxsdTRs',
-      color: 'bg-gradient-to-b from-[#E4405F] to-[#F56040]',
+      color: 'bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]',
       delay: 'delay-150',
     },
     {
       name: 'TikTok',
       icon: FaTiktok,
       href: 'https://www.tiktok.com/@bsmabsma116?_r=1&_t=ZS-93G9HOx1ria',
-      color: 'bg-gradient-to-b from-[#000000] to-[#161823]',
+      color: 'bg-[#000000]',
       delay: 'delay-200',
     },
     {
       name: 'Snapchat',
       icon: FaSnapchat,
       href: 'https://snapchat.com/add/your_snapchat', // Replace with your Snapchat link
-      color: 'bg-gradient-to-b from-[#FFFC00] to-[#FFF700]',
+      color: 'bg-[#FFFC00]',
       textColor: 'text-black',
       delay: 'delay-300',
     },

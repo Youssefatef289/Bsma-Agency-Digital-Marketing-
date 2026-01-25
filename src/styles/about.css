@@ -1,6 +1,6 @@
 /* About Page Styles */
 .about-hero {
-  background: linear-gradient(to bottom right, #1e3a8a, #1e40af, #1e3a8a);
+  background: linear-gradient(to bottom right, #581c87, #6b21a8, #581c87);
   color: white;
   padding: 5rem 0;
 }
@@ -154,7 +154,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 0.75rem;
-  background: linear-gradient(to bottom right, #3b82f6, #1d4ed8);
+  background: linear-gradient(to bottom right, #a855f7, #9333ea);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,7 +233,7 @@
 }
 
 .about-why-icon {
-  color: #2563eb;
+  color: #9333ea;
   flex-shrink: 0;
   width: 1.5rem;
   height: 1.5rem;

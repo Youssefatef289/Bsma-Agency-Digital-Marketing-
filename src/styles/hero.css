@@ -1,7 +1,7 @@
 /* Hero Section Styles */
 .hero-section {
   position: relative;
-  background: linear-gradient(to bottom right, #1e3a8a, #1e40af, #1e3a8a);
+  background: linear-gradient(to bottom right, #581c87, #6b21a8, #581c87);
   color: white;
   overflow: hidden;
 }
@@ -87,7 +87,7 @@
 
 .hero-cta-primary {
   background: white;
-  color: #2563eb;
+  color: #9333ea;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
   font-weight: 700;
@@ -118,7 +118,7 @@
 
 .hero-cta-secondary:hover {
   background: white;
-  color: #2563eb;
+  color: #9333ea;
 }
 
 .hero-image-container {
@@ -139,7 +139,7 @@
 .hero-image-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom right, #60a5fa, #2563eb);
+  background: linear-gradient(to bottom right, #c084fc, #9333ea);
   border-radius: 1.5rem;
   transform: rotate(-6deg);
   opacity: 0.2;
