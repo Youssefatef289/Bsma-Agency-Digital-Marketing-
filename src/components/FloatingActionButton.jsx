@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { MessageCircle, X } from 'lucide-react'
-import { FaTelegramPlane, FaWhatsapp, FaFacebookMessenger, FaInstagram, FaTiktok, FaSnapchat } from 'react-icons/fa'
+import { FaFacebook, FaWhatsapp, FaInstagram, FaTiktok } from 'react-icons/fa'
 import { useLanguage } from '../contexts/LanguageContext'
 import { translations } from '../translations/translations'
 
@@ -15,47 +15,32 @@ const FloatingActionButton = () => {
 
   const socialLinks = [
     {
-      name: 'Telegram',
-      icon: FaTelegramPlane,
-      href: 'https://t.me/your_telegram', // Replace with your Telegram link
-      color: 'bg-[#0088CC]',
+      name: 'WhatsApp',
+      icon: FaWhatsapp,
+      href: 'https://wa.me/201287661678',
+      color: 'bg-[#25D366]',
       delay: 'delay-0',
     },
     {
-      name: 'WhatsApp',
-      icon: FaWhatsapp,
-      href: 'https://wa.me/your_whatsapp', // Replace with your WhatsApp link
-      color: 'bg-[#25D366]',
+      name: 'Facebook',
+      icon: FaFacebook,
+      href: 'https://www.facebook.com/share/1GzGm9TnRN/',
+      color: 'bg-[#1877F2]',
       delay: 'delay-75',
-    },
-    {
-      name: 'Messenger',
-      icon: FaFacebookMessenger,
-      href: 'https://m.me/your_messenger', // Replace with your Messenger link
-      color: 'bg-[#0084FF]',
-      delay: 'delay-100',
     },
     {
       name: 'Instagram',
       icon: FaInstagram,
       href: 'https://www.instagram.com/ma8535128?igsh=NXF1ejJpdGxsdTRs',
       color: 'bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]',
-      delay: 'delay-150',
+      delay: 'delay-100',
     },
     {
       name: 'TikTok',
       icon: FaTiktok,
       href: 'https://www.tiktok.com/@bsmabsma116?_r=1&_t=ZS-93G9HOx1ria',
       color: 'bg-[#000000]',
-      delay: 'delay-200',
-    },
-    {
-      name: 'Snapchat',
-      icon: FaSnapchat,
-      href: 'https://snapchat.com/add/your_snapchat', // Replace with your Snapchat link
-      color: 'bg-[#FFFC00]',
-      textColor: 'text-black',
-      delay: 'delay-300',
+      delay: 'delay-150',
     },
   ]
 

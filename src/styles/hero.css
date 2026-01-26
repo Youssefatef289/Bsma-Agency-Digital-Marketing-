@@ -86,7 +86,7 @@
 }
 
 .hero-cta-primary {
-  background: white;
+  background: blueviolet;
   color: #9333ea;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
@@ -140,7 +140,7 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom right, #c084fc, #9333ea);
-  border-radius: 1.5rem;
+  border-radius: 5px;
   transform: rotate(-6deg);
   opacity: 0.2;
 }

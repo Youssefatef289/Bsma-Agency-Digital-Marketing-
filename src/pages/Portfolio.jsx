@@ -263,8 +263,7 @@ const Portfolio = () => {
                 return (
                   <div
                     key={index}
-                    onClick={() => openLightbox(fullIndex >= 0 ? fullIndex : index)}
-                    className="group relative overflow-hidden rounded-xl cursor-pointer bg-gray-200 aspect-square transform transition-all duration-700 ease-out hover:scale-[1.05] hover:shadow-2xl hover:z-10 animate-fade-in"
+                    className="group relative overflow-hidden rounded-xl bg-gray-200 aspect-square transform transition-all duration-700 ease-out hover:scale-[1.05] hover:shadow-2xl hover:z-10 animate-fade-in"
                     style={{ animationDelay: `${(index % 12) * 0.05}s` }}
                   >
                     <img
@@ -276,11 +275,6 @@ const Portfolio = () => {
                         e.target.style.display = 'none'
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0 text-white text-sm font-semibold bg-black/70 px-6 py-3 rounded-lg backdrop-blur-md border border-white/30 shadow-xl">
-                        {language === 'en' ? 'Click to view' : 'اضغط للعرض'}
-                      </div>
-                    </div>
                     {/* Shine effect */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>

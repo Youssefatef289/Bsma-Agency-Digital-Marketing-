@@ -32,9 +32,9 @@ const About = () => {
   ]
 
   const stats = [
-    { number: '50+', label: t.home.stats.satisfiedClients },
-    { number: '100+', label: t.home.stats.successfulProjects },
-    { number: '5+', label: t.home.stats.yearsExperience },
+    { number: '20+', label: t.home.stats.satisfiedClients },
+    { number: '60+', label: t.home.stats.successfulProjects },
+    { number: '2+', label: t.home.stats.yearsExperience },
     { number: '24/7', label: t.home.stats.technicalSupport },
   ]
 

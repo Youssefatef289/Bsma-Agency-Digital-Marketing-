@@ -3,6 +3,7 @@ import { LanguageProvider, useLanguage } from './contexts/LanguageContext.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import FloatingActionButton from './components/FloatingActionButton.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import LoadingScreen from './components/LoadingScreen.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
@@ -27,6 +28,7 @@ const AppContent = () => {
         </main>
         <Footer />
         <FloatingActionButton />
+        <ScrollToTop />
       </div>
     </Router>
   )

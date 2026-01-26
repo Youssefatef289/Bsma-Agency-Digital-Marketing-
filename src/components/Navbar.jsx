@@ -19,6 +19,23 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false)
+  }, [location.pathname])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   const navLinks = [
     { path: '/', label: t.nav.home },
     { path: '/about', label: t.nav.about },
@@ -57,10 +74,10 @@ const Navbar = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 whitespace-nowrap ${
+                    className={`navbar-link-underline px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap relative ${
                       location.pathname === link.path
-                        ? 'text-purple-600 font-bold bg-purple-50 border border-purple-200'
-                        : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50'
+                        ? 'text-purple-600 font-bold'
+                        : 'text-gray-700 hover:text-purple-600'
                     }`}
                   >
                     {link.label}
@@ -90,10 +107,10 @@ const Navbar = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 whitespace-nowrap ${
+                    className={`navbar-link-underline px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap relative ${
                       location.pathname === link.path
-                        ? 'text-purple-600 font-bold bg-purple-50 border border-purple-200'
-                        : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50'
+                        ? 'text-purple-600 font-bold'
+                        : 'text-gray-700 hover:text-purple-600'
                     }`}
                   >
                     {link.label}
@@ -129,42 +146,60 @@ const Navbar = () => {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-800 hover:text-purple-600 transition-all duration-300 transform hover:scale-110"
+              className="navbar-mobile-toggle text-gray-800 hover:text-purple-600 transition-all duration-300 transform hover:scale-110 active:scale-95"
+              aria-label={isOpen ? (language === 'en' ? 'Close menu' : 'إغلاق القائمة') : (language === 'en' ? 'Open menu' : 'فتح القائمة')}
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              <div className={`navbar-menu-icon ${isOpen ? 'navbar-menu-icon-open' : ''}`}>
+                {isOpen ? <X size={28} /> : <Menu size={28} />}
+              </div>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Smooth Animation */}
+      {/* Backdrop Overlay */}
       {isOpen && (
-        <div className={`navbar-mobile-menu ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
-          <div className={`px-4 pt-2 pb-4 space-y-2 ${isRTL ? 'text-right' : 'text-left'}`}>
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
-                  location.pathname === link.path
-                    ? 'text-purple-600 font-bold bg-purple-50'
-                    : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              to="/contact"
-              onClick={() => setIsOpen(false)}
-              className="block text-center mt-4 px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-lg"
-            >
-              {t.nav.getStarted}
-            </Link>
-          </div>
-        </div>
+        <div 
+          className="navbar-mobile-backdrop"
+          onClick={() => setIsOpen(false)}
+        ></div>
       )}
+      
+      {/* Mobile Menu */}
+      <div className={`navbar-mobile-menu ${isOpen ? 'navbar-mobile-menu-open' : 'navbar-mobile-menu-closed'}`}>
+        <div className={`px-4 pt-4 pb-6 space-y-1 ${isRTL ? 'text-right' : 'text-left'}`}>
+          {navLinks.map((link, index) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              onClick={() => setIsOpen(false)}
+              className={`navbar-mobile-link-item block px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-300 ${
+                location.pathname === link.path
+                  ? 'text-purple-600 font-bold bg-purple-50 border-2 border-purple-200'
+                  : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50 active:bg-purple-100'
+              }`}
+              style={{ 
+                animationDelay: `${index * 0.05}s`,
+                animation: isOpen ? 'slideInDown 0.3s ease-out forwards' : 'none'
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            to="/contact"
+            onClick={() => setIsOpen(false)}
+            className="navbar-mobile-cta block text-center mt-4 px-6 py-3.5 rounded-xl font-semibold transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 active:scale-95"
+            style={{ 
+              animationDelay: `${navLinks.length * 0.05}s`,
+              animation: isOpen ? 'slideInDown 0.3s ease-out forwards' : 'none'
+            }}
+          >
+            {t.nav.getStarted}
+          </Link>
+        </div>
+      </div>
     </nav>
   )
 }

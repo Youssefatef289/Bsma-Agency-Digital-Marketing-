@@ -52,8 +52,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: language === 'ar' ? 'البريد الإلكتروني' : 'Email',
-      content: 'info@bsma-agency.com',
-      link: 'mailto:info@bsma-agency.com',
+      content: 'bsmaagency@gmail.com',
+      link: 'mailto:bsmaagency@gmail.com',
     },
     {
       icon: MapPin,

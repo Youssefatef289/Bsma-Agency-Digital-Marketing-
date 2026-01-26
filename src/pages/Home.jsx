@@ -253,8 +253,8 @@ const Home = () => {
 
   return (
     <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-      {/* Hero Section - Clean White Background */}
-      <section className={`relative bg-white overflow-hidden min-h-[90vh] flex items-center pt-20 ${isRTL ? 'text-right' : 'text-left'}`}>
+      {/* Hero Section - Clean White Background - Mobile Optimized */}
+      <section className={`relative bg-white overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center pt-20 sm:pt-24 ${isRTL ? 'text-right' : 'text-left'}`}>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
           <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${isRTL ? 'lg:grid-flow-dense' : ''}`}>
@@ -268,49 +268,32 @@ const Home = () => {
                 </span>
               </div>
               
-              {/* Main Title - Animated */}
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 text-gray-900 animate-slide-up ${isRTL ? 'text-right' : 'text-left'}`} style={{ animationDelay: '0.2s' }}>
+              {/* Main Title - Animated - Mobile Optimized */}
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4 sm:mb-6 text-gray-900 animate-slide-up ${isRTL ? 'text-right' : 'text-left'}`} style={{ animationDelay: '0.2s' }}>
                 <span className="block mb-2">{t.home.heroTitle}</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 mt-2 animate-gradient">
                   {t.home.heroSubtitle}
                 </span>
               </h1>
               
-              {/* Description - Animated */}
-              <p className={`text-lg md:text-xl lg:text-2xl text-gray-600 mb-10 leading-relaxed max-w-2xl animate-slide-up ${isRTL ? 'text-right ml-auto' : 'text-left'}`} style={{ animationDelay: '0.3s' }}>
+              {/* Description - Animated - Mobile Optimized */}
+              <p className={`text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-10 leading-relaxed max-w-2xl animate-slide-up ${isRTL ? 'text-right ml-auto' : 'text-left'}`} style={{ animationDelay: '0.3s' }}>
                 {t.home.heroDescription}
               </p>
               
-              {/* Buttons - Visible and Prominent */}
-              <div className={`flex flex-col sm:flex-row gap-4 items-start ${isRTL ? 'sm:flex-row-reverse sm:justify-end' : 'sm:justify-start'} opacity-100`} style={{ animation: 'slideUp 0.6s ease-out 0.4s both' }}>
-                <Link
-                  to="/contact"
-                  className={`group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:from-purple-700 hover:to-pink-700 flex items-center justify-center gap-3 min-w-[200px] z-10 ${isRTL ? 'flex-row-reverse' : ''}`}
-                >
-                  <span>{t.nav.getStarted}</span>
-                  <ArrowIcon size={20} className="group-hover:translate-x-1 transition-transform" style={{ transform: isRTL ? 'scaleX(-1)' : 'none' }} />
-                </Link>
-                <Link
-                  to="/about"
-                  className={`group relative bg-white border-2 border-purple-200 text-purple-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 hover:border-purple-300 hover:text-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 min-w-[200px] z-10 ${isRTL ? 'flex-row-reverse' : ''}`}
-                >
-                  <span>{t.home.learnMore}</span>
-                </Link>
-              </div>
-              
-              {/* Stats Preview - Animated */}
-              <div className={`mt-12 flex flex-wrap gap-6 animate-slide-up ${isRTL ? 'justify-end' : 'justify-start'}`} style={{ animationDelay: '0.5s' }}>
+              {/* Stats Preview - Animated - Mobile Optimized */}
+              <div className={`mt-8 sm:mt-12 flex flex-wrap gap-4 sm:gap-6 animate-slide-up ${isRTL ? 'justify-end' : 'justify-start'}`} style={{ animationDelay: '0.5s' }}>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 mb-1">20+</div>
-                  <div className="text-sm text-gray-600">{language === 'en' ? 'Clients' : 'عميل'}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">20+</div>
+                  <div className="text-xs sm:text-sm text-gray-600">{language === 'en' ? 'Clients' : 'عميل'}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 mb-1">60+</div>
-                  <div className="text-sm text-gray-600">{language === 'en' ? 'Projects' : 'مشروع'}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">60+</div>
+                  <div className="text-xs sm:text-sm text-gray-600">{language === 'en' ? 'Projects' : 'مشروع'}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 mb-1">2+</div>
-                  <div className="text-sm text-gray-600">{language === 'en' ? 'Years' : 'سنة'}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">2+</div>
+                  <div className="text-xs sm:text-sm text-gray-600">{language === 'en' ? 'Years' : 'سنة'}</div>
                 </div>
               </div>
             </div>

@@ -12,15 +12,35 @@
 @import './styles/about.css';
 @import './styles/contact.css';
 @import './styles/floating-button.css';
+@import './styles/scroll-to-top.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
   body {
     @apply bg-gray-50 text-gray-900;
     font-family: "Josefin Sans", sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Smooth scrolling for mobile */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
   
   /* Arabic Font - Noto Kufi Arabic */

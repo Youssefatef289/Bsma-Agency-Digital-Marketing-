@@ -141,3 +141,18 @@
   animation: image-float 5s ease-in-out infinite;
 }
 
+/* Mobile-specific animations */
+@media (max-width: 768px) {
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.4s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out;
+  }
+}
+
