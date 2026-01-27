@@ -10,6 +10,8 @@ const Footer = () => {
 
   const phoneNumber = '01287661678'
   const whatsappNumber = '201287661678'
+  const saudiPhoneNumber = '+966 56 731 7716'
+  const saudiWhatsappNumber = '966567317716'
   
   const socialLinks = [
     { icon: FaFacebook, href: 'https://www.facebook.com/share/1GzGm9TnRN/', label: 'Facebook', color: 'hover:bg-[#1877F2]' },
@@ -51,7 +53,10 @@ const Footer = () => {
                   <Phone size={18} className="footer-contact-icon" />
                 </div>
                 <div className="footer-contact-content">
-                  <a href={`tel:+${whatsappNumber}`} className="footer-contact-text">{phoneNumber}</a>
+                  <div className="flex flex-col gap-1">
+                    <a href={`tel:+${whatsappNumber}`} className="footer-contact-text">{language === 'en' ? 'Egypt' : 'مصر'}: {phoneNumber}</a>
+                    <a href={`tel:${saudiWhatsappNumber}`} className="footer-contact-text">{language === 'en' ? 'Saudi Arabia' : 'السعودية'}: {saudiPhoneNumber}</a>
+                  </div>
                 </div>
               </li>
               <li className={`footer-contact-item ${isRTL ? 'flex-row-reverse' : ''}`}>
@@ -59,7 +64,10 @@ const Footer = () => {
                   <FaWhatsapp size={18} className="footer-contact-icon" />
                 </div>
                 <div className="footer-contact-content">
-                  <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="footer-contact-text">{phoneNumber}</a>
+                  <div className="flex flex-col gap-1">
+                    <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="footer-contact-text">{language === 'en' ? 'Egypt' : 'مصر'}: {phoneNumber}</a>
+                    <a href={`https://wa.me/${saudiWhatsappNumber}`} target="_blank" rel="noopener noreferrer" className="footer-contact-text">{language === 'en' ? 'Saudi Arabia' : 'السعودية'}: {saudiPhoneNumber}</a>
+                  </div>
                 </div>
               </li>
               <li className={`footer-contact-item ${isRTL ? 'flex-row-reverse' : ''}`}>

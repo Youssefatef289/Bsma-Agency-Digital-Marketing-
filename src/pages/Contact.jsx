@@ -44,12 +44,25 @@ const Contact = () => {
 
   const phoneNumber = '01287661678'
   const whatsappNumber = '201287661678'
+  const saudiPhoneNumber = '+966 56 731 7716'
+  const saudiWhatsappNumber = '966567317716'
   
   const contactInfo = [
     {
       icon: Phone,
       title: language === 'ar' ? 'الهاتف' : 'Phone',
-      content: phoneNumber,
+      content: (
+        <div className="flex flex-col gap-2">
+          <div>
+            <span className="font-semibold">{language === 'en' ? 'Egypt' : 'مصر'}: </span>
+            <a href={`tel:+${whatsappNumber}`} className="text-blue-600 hover:underline">{phoneNumber}</a>
+          </div>
+          <div>
+            <span className="font-semibold">{language === 'en' ? 'Saudi Arabia' : 'السعودية'}: </span>
+            <a href={`tel:${saudiWhatsappNumber}`} className="text-blue-600 hover:underline">{saudiPhoneNumber}</a>
+          </div>
+        </div>
+      ),
       link: `tel:+${whatsappNumber}`,
     },
     {
@@ -202,9 +215,13 @@ const Contact = () => {
                         <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
                           <Icon className="text-blue-600 group-hover:text-white transition-colors" size={24} />
                         </div>
-                        <div>
+                        <div className="flex-1">
                           <h3 className="font-bold text-gray-900 mb-1">{info.title}</h3>
-                          <p className="text-gray-600">{info.content}</p>
+                          {typeof info.content === 'string' ? (
+                            <p className="text-gray-600">{info.content}</p>
+                          ) : (
+                            <div className="text-gray-600">{info.content}</div>
+                          )}
                         </div>
                       </a>
                     )
@@ -212,19 +229,33 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* WhatsApp Button */}
-              <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-green-500 text-white rounded-2xl p-6 shadow-lg hover:bg-green-600 transition-all transform hover:scale-105 text-center group"
-              >
-                <div className={`flex items-center justify-center gap-3 mb-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <MessageCircle size={28} />
-                  <span className="text-xl font-bold">{t.contact.whatsapp}</span>
-                </div>
-                <p className="text-green-100">{t.contact.whatsappDesc}</p>
-              </a>
+              {/* WhatsApp Buttons */}
+              <div className="space-y-4">
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-green-500 text-white rounded-2xl p-6 shadow-lg hover:bg-green-600 transition-all transform hover:scale-105 text-center group"
+                >
+                  <div className={`flex items-center justify-center gap-3 mb-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <MessageCircle size={28} />
+                    <span className="text-xl font-bold">{t.contact.whatsapp} - {language === 'en' ? 'Egypt' : 'مصر'}</span>
+                  </div>
+                  <p className="text-green-100">{phoneNumber}</p>
+                </a>
+                <a
+                  href={`https://wa.me/${saudiWhatsappNumber}?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-green-500 text-white rounded-2xl p-6 shadow-lg hover:bg-green-600 transition-all transform hover:scale-105 text-center group"
+                >
+                  <div className={`flex items-center justify-center gap-3 mb-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <MessageCircle size={28} />
+                    <span className="text-xl font-bold">{t.contact.whatsapp} - {language === 'en' ? 'Saudi Arabia' : 'السعودية'}</span>
+                  </div>
+                  <p className="text-green-100">{saudiPhoneNumber}</p>
+                </a>
+              </div>
 
               {/* Social Media */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
