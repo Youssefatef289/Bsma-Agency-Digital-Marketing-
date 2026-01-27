@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useRef, useEffect, useState } from 'react'
-import { ArrowRight, ArrowLeft, Palette, Megaphone, Share2, Video, Globe, CheckCircle, TrendingUp, Users, Award, ChevronLeft, ChevronRight, Bird } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Palette, Megaphone, Share2, Video, Globe, CheckCircle, TrendingUp, Users, Award, ChevronLeft, ChevronRight, Bird, Star, Quote, Target, Zap, Shield, Heart, MessageCircle } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { translations } from '../translations/translations'
 import heroIllustration from '../assets/illustrations/hero-illustration.svg'
@@ -623,7 +623,194 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Testimonials Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.home.testimonials} <span className="text-gradient">{t.home.clientsSay}</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {t.home.testimonialsDescription}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: language === 'en' ? 'Ahmed Mohamed' : 'أحمد محمد',
+                company: language === 'en' ? 'E-commerce Store Owner' : 'صاحب متجر إلكتروني',
+                text: language === 'en' 
+                  ? 'Bsma Agency helped us increase our online sales by 300% in just 3 months. Professional team and excellent results!'
+                  : 'وكالة بصمة ساعدتنا في زيادة مبيعاتنا الإلكترونية بنسبة 300% في 3 أشهر فقط. فريق محترف ونتائج ممتازة!',
+                rating: 5,
+              },
+              {
+                name: language === 'en' ? 'Sara Ali' : 'سارة علي',
+                company: language === 'en' ? 'Restaurant Owner' : 'صاحبة مطعم',
+                text: language === 'en'
+                  ? 'Their social media management service transformed our online presence. We now have thousands of engaged followers!'
+                  : 'خدمة إدارة السوشيال ميديا الخاصة بهم غيرت وجودنا على الإنترنت. لدينا الآن آلاف المتابعين المتفاعلين!',
+                rating: 5,
+              },
+              {
+                name: language === 'en' ? 'Mohamed Hassan' : 'محمد حسن',
+                company: language === 'en' ? 'Startup Founder' : 'مؤسس شركة ناشئة',
+                text: language === 'en'
+                  ? 'The website they built for us is modern, fast, and user-friendly. Highly recommended!'
+                  : 'الموقع الذي بنوه لنا حديث وسريع وسهل الاستخدام. أنصح به بشدة!',
+                rating: 5,
+              },
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl border border-purple-100 hover:shadow-xl transition-all duration-300 animate-slide-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="text-yellow-400 fill-yellow-400" size={20} />
+                  ))}
+                </div>
+                <Quote className="text-purple-300 mb-3" size={32} />
+                <p className="text-gray-700 mb-6 leading-relaxed italic">
+                  "{testimonial.text}"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900">{testimonial.name}</div>
+                    <div className="text-sm text-gray-600">{testimonial.company}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How We Work Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {language === 'en' ? 'How We Work' : 'كيف نعمل'}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {language === 'en' 
+                ? 'Our proven process to deliver exceptional results'
+                : 'عملنا المثبت لتقديم نتائج استثنائية'}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                step: '01',
+                title: language === 'en' ? 'Discovery' : 'الاكتشاف',
+                description: language === 'en' 
+                  ? 'We understand your business goals and target audience'
+                  : 'نفهم أهداف عملك وجمهورك المستهدف',
+                icon: Target,
+              },
+              {
+                step: '02',
+                title: language === 'en' ? 'Strategy' : 'الاستراتيجية',
+                description: language === 'en'
+                  ? 'We create a customized marketing strategy for you'
+                  : 'ننشئ استراتيجية تسويقية مخصصة لك',
+                icon: Zap,
+              },
+              {
+                step: '03',
+                title: language === 'en' ? 'Execution' : 'التنفيذ',
+                description: language === 'en'
+                  ? 'We implement the strategy with precision and care'
+                  : 'ننفذ الاستراتيجية بدقة وعناية',
+                icon: Shield,
+              },
+              {
+                step: '04',
+                title: language === 'en' ? 'Results' : 'النتائج',
+                description: language === 'en'
+                  ? 'We track and optimize for continuous improvement'
+                  : 'نتتبع ونحسن للتحسين المستمر',
+                icon: Heart,
+              },
+            ].map((item, index) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-2xl border border-gray-200 hover:shadow-xl transition-all duration-300 animate-slide-up group"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-4">
+                    {item.step}
+                  </div>
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <Icon className="text-white" size={28} />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges Section */}
+      <section className="py-16 bg-white border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+              {language === 'en' ? 'Why Clients Trust Us' : 'لماذا يثق العملاء بنا'}
+            </h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Award,
+                title: language === 'en' ? 'Quality Guaranteed' : 'جودة مضمونة',
+                description: language === 'en' ? 'Premium services' : 'خدمات ممتازة',
+              },
+              {
+                icon: Users,
+                title: language === 'en' ? 'Expert Team' : 'فريق خبير',
+                description: language === 'en' ? 'Professional experts' : 'خبراء محترفون',
+              },
+              {
+                icon: TrendingUp,
+                title: language === 'en' ? 'Proven Results' : 'نتائج مثبتة',
+                description: language === 'en' ? 'Measurable success' : 'نجاح قابل للقياس',
+              },
+              {
+                icon: CheckCircle,
+                title: language === 'en' ? '24/7 Support' : 'دعم 24/7',
+                description: language === 'en' ? 'Always available' : 'متاح دائماً',
+              },
+            ].map((badge, index) => {
+              const Icon = badge.icon
+              return (
+                <div
+                  key={index}
+                  className="text-center p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300 animate-slide-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 mb-4">
+                    <Icon className="text-purple-600" size={32} />
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">{badge.title}</h4>
+                  <p className="text-sm text-gray-600">{badge.description}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced CTA Section */}
       <section className="py-20 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <img
@@ -633,18 +820,34 @@ const Home = () => {
           />
         </div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md mb-6">
+            <Star className="text-yellow-300 fill-yellow-300" size={20} />
+            <span className="text-sm font-medium">{language === 'en' ? 'Get Started Today' : 'ابدأ اليوم'}</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             {t.home.readyToStart}
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto">
             {t.home.contactNow}
           </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-white text-purple-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-purple-50 transition-all transform hover:scale-105 shadow-lg"
-          >
-            {t.home.contactUsNow}
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              to="/contact"
+              className={`inline-flex items-center gap-3 bg-white text-purple-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 transition-all transform hover:scale-105 shadow-2xl ${isRTL ? 'flex-row-reverse' : ''}`}
+            >
+              <span>{t.home.contactUsNow}</span>
+              <ArrowIcon size={20} />
+            </Link>
+            <a
+              href="https://wa.me/201287661678"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-3 bg-green-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-green-600 transition-all transform hover:scale-105 shadow-2xl ${isRTL ? 'flex-row-reverse' : ''}`}
+            >
+              <MessageCircle size={20} />
+              <span>{language === 'en' ? 'Chat on WhatsApp' : 'تواصل عبر واتساب'}</span>
+            </a>
+          </div>
         </div>
       </section>
     </div>

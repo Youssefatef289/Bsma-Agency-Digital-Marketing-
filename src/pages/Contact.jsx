@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Send, Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
-import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaTelegram, FaWhatsapp, FaTiktok, FaSnapchat } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaWhatsapp, FaTiktok } from 'react-icons/fa'
 import { useLanguage } from '../contexts/LanguageContext'
 import { translations } from '../translations/translations'
 
@@ -42,12 +42,15 @@ const Contact = () => {
     }, 1500)
   }
 
+  const phoneNumber = '01287661678'
+  const whatsappNumber = '201287661678'
+  
   const contactInfo = [
     {
       icon: Phone,
       title: language === 'ar' ? 'الهاتف' : 'Phone',
-      content: '+20 XXX XXX XXXX',
-      link: 'tel:+20XXXXXXXXXX',
+      content: phoneNumber,
+      link: `tel:+${whatsappNumber}`,
     },
     {
       icon: Mail,
@@ -58,26 +61,21 @@ const Contact = () => {
     {
       icon: MapPin,
       title: language === 'ar' ? 'العنوان' : 'Address',
-      content: language === 'en' ? 'Egypt' : 'مصر',
-      link: '#',
+      content: language === 'en' ? 'Bani Suef, Al-Hamayat' : 'بنى سويف، الحميات',
+      link: 'https://maps.google.com/?q=29.0744,31.0972',
     },
   ]
 
   const socialLinks = [
-    { icon: FaFacebook, href: '#', label: 'Facebook', color: 'bg-[#1877F2] hover:bg-[#166FE5]' },
-    { icon: FaInstagram, href: '#', label: 'Instagram', color: 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] hover:opacity-90' },
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn', color: 'bg-[#0077B5] hover:bg-[#006399]' },
-    { icon: FaYoutube, href: '#', label: 'YouTube', color: 'bg-[#FF0000] hover:bg-[#CC0000]' },
-    { icon: FaTelegram, href: '#', label: 'Telegram', color: 'bg-[#0088CC] hover:bg-[#0077B3]' },
-    { icon: FaWhatsapp, href: '#', label: 'WhatsApp', color: 'bg-[#25D366] hover:bg-[#20BA5A]' },
-    { icon: FaTiktok, href: '#', label: 'TikTok', color: 'bg-[#000000] hover:bg-[#1A1A1A]' },
-    { icon: FaSnapchat, href: '#', label: 'Snapchat', color: 'bg-[#FFFC00] hover:bg-[#FFE600] text-black' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/share/1GzGm9TnRN/', label: 'Facebook', color: 'bg-[#1877F2] hover:bg-[#166FE5]' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/ma8535128?igsh=NXF1ejJpdGxsdTRs', label: 'Instagram', color: 'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] hover:opacity-90' },
+    { icon: FaWhatsapp, href: 'https://wa.me/201287661678', label: 'WhatsApp', color: 'bg-[#25D366] hover:bg-[#20BA5A]' },
+    { icon: FaTiktok, href: 'https://www.tiktok.com/@bsmabsma116?_r=1&_t=ZS-93G9HOx1ria', label: 'TikTok', color: 'bg-[#000000] hover:bg-[#1A1A1A]' },
   ]
 
-  const whatsappNumber = '201234567890'
   const whatsappMessage = encodeURIComponent(
     language === 'en' 
-      ? 'Hello, I am interested in Bama Digital Marketing services'
+      ? 'Hello, I am interested in Bsma Digital Marketing services'
       : 'مرحباً، أنا مهتم بخدمات بصمة للتسويق الرقمي'
   )
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
@@ -231,7 +229,7 @@ const Contact = () => {
               {/* Social Media */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.followUs}</h3>
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {socialLinks.map((social) => {
                     const Icon = social.icon
                     return (
@@ -254,15 +252,29 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section (Optional) */}
+      {/* Map Section */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
-            <div className="text-center text-gray-500">
-              <MapPin size={48} className="mx-auto mb-4" />
-              <p className="text-xl">{t.contact.locationMap}</p>
-              <p className="text-sm mt-2">{t.contact.mapDescription}</p>
-            </div>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {language === 'en' ? 'Our Location' : 'موقعنا'}
+            </h2>
+            <p className="text-lg text-gray-600">
+              {language === 'en' ? 'Bani Suef, Al-Hamayat' : 'بنى سويف، الحميات'}
+            </p>
+          </div>
+          <div className="rounded-2xl overflow-hidden shadow-2xl h-96">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.5!2d31.0972!3d29.0744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDA0JzI3LjgiTiAzMcKwMDUnNDkuOSJF!5e0!3m2!1sar!2seg!4v1234567890&q=بنى+سويف+الحميات"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={language === 'en' ? 'Bsma Agency Location' : 'موقع وكالة بصمة'}
+              className="w-full h-full"
+            ></iframe>
           </div>
         </div>
       </section>
