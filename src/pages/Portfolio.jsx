@@ -122,6 +122,18 @@ const Portfolio = () => {
       url: '#',
       category: 'website',
     },
+    {
+      image: '/image/Portfolio/Portfolio-Website/profile-furniture.png',
+      title: 'Profile for Furniture and Antiques',
+      url: 'https://profile-for-furniture-and-antiques.vercel.app/',
+      category: 'website',
+    },
+    {
+      image: '/image/Portfolio/Portfolio-Website/touch-furniture.png',
+      title: 'Touch Furniture',
+      url: 'https://touch-furniture.vercel.app/',
+      category: 'website',
+    },
   ]
 
   const categories = [

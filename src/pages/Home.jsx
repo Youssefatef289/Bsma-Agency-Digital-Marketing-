@@ -242,6 +242,20 @@ const Home = () => {
       link: 'https://youssefatef289.github.io/Herb----Wonders/',
       isExternal: true,
     },
+    {
+      title: 'Profile for Furniture and Antiques',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/profile-furniture.png',
+      link: 'https://profile-for-furniture-and-antiques.vercel.app/',
+      isExternal: true,
+    },
+    {
+      title: 'Touch Furniture',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/touch-furniture.png',
+      link: 'https://touch-furniture.vercel.app/',
+      isExternal: true,
+    },
   ]
 
   const stats = [
