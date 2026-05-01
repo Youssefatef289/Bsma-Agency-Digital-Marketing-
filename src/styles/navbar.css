@@ -17,9 +17,9 @@
 }
 
 .navbar-transparent {
-  background: white;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1), 0 2px 8px -1px rgba(0, 0, 0, 0.06);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid transparent;
 }
 
 .navbar-container {
@@ -156,6 +156,11 @@
 .navbar-link-underline.text-purple-600::after {
   width: 80%;
   background: linear-gradient(to right, #9333ea, #ec4899);
+}
+
+.navbar-link-underline.text-purple-400::after {
+  width: 80%;
+  background: linear-gradient(to right, #c084fc, #f0abfc);
 }
 
 /* RTL Support for underline */
@@ -374,5 +379,30 @@
 
 [dir="rtl"] .navbar-desktop {
   direction: rtl;
+}
+
+/* Dark mode navbar */
+html.dark .navbar-scrolled,
+html.dark .navbar-transparent {
+  background: rgba(17, 24, 39, 0.95);
+  border-bottom: 1px solid rgba(75, 85, 99, 0.8);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45), 0 2px 8px -1px rgba(0, 0, 0, 0.35);
+}
+
+html.dark .navbar-mobile-menu {
+  background: #111827;
+  border-top: 1px solid #374151;
+}
+
+html.dark .navbar-mobile-toggle {
+  color: #f3f4f6;
+}
+
+html.dark .theme-toggle-btn,
+html.dark .navbar-desktop button,
+html.dark .navbar-mobile button {
+  background: #1f2937 !important;
+  color: #e5e7eb !important;
+  border-color: #374151 !important;
 }
 

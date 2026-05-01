@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useLanguage } from '../contexts/LanguageContext'
-import { translations } from '../translations/translations'
 import ImageLightbox from '../components/ImageLightbox'
 
 const Portfolio = () => {
   const { language, isTransitioning } = useLanguage()
-  const t = translations[language]
   const isRTL = language === 'ar'
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -75,6 +73,24 @@ const Portfolio = () => {
   // Website Projects
   const websiteProjects = [
     {
+      image: '/image/Portfolio/Portfolio-Website/Brilliant Home.png',
+      title: 'Brilliant Home',
+      url: 'https://brilliant-home.vercel.app/',
+      category: 'website',
+    },
+    {
+      image: '/image/Portfolio/Portfolio-Website/Emaar.png',
+      title: 'Emaar',
+      url: 'https://emaar-company.vercel.app/',
+      category: 'website',
+    },
+    {
+      image: '/image/Portfolio/Portfolio-Website/Al Fadi.png',
+      title: 'Al Fadi',
+      url: 'https://al-fadi.vercel.app/',
+      category: 'website',
+    },
+    {
       image: '/image/Portfolio/Portfolio-Website/Sky-Block.png',
       title: 'Sky Block',
       url: 'https://sky-block-mu.vercel.app/',
@@ -136,10 +152,69 @@ const Portfolio = () => {
     },
   ]
 
+  // Client logos
+  const clientLogos = [
+    {
+      image: '/image/Portfolio/logos work company/Brillante Furniture.jpeg',
+      alt: language === 'en' ? 'Brillante Furniture Logo' : 'لوجو بريليانت فيرنتشر',
+      name: 'Brillante Furniture',
+    },
+    {
+      image: '/image/Portfolio/logos work company/Emaar.jpg',
+      alt: language === 'en' ? 'Emaar Logo' : 'لوجو إعمار',
+      name: 'Emaar',
+    },
+    {
+      image: '/image/Portfolio/logos work company/mix.jpg',
+      alt: language === 'en' ? 'Mix Logo' : 'لوجو ميكس',
+      name: 'Mix',
+    },
+    {
+      image: '/image/Portfolio/logos work company/الفادى.jpeg',
+      alt: language === 'en' ? 'Al Fady Logo' : 'لوجو الفادي',
+      name: 'Al Fady',
+    },
+    {
+      image: '/image/Portfolio/logos work company/بروفايل للاثاث.jpg',
+      alt: language === 'en' ? 'Profile Furniture Logo' : 'لوجو بروفايل للأثاث',
+      name: language === 'en' ? 'Profile Furniture' : 'بروفايل للأثاث',
+    },
+  ]
+
+  // Video reels
+  const videoReels = [
+    {
+      src: '/image/Portfolio/Video & Reels Production/Al-fady.mp4',
+      title: 'Al Fady Reel',
+    },
+    {
+      src: '/image/Portfolio/Video & Reels Production/Brillante Furniture (1).mp4',
+      title: 'Brillante Furniture Reel 1',
+    },
+    {
+      src: '/image/Portfolio/Video & Reels Production/Brillante Furniture (2).mp4',
+      title: 'Brillante Furniture Reel 2',
+    },
+    {
+      src: '/image/Portfolio/Video & Reels Production/Emaar (1).mp4',
+      title: 'Emaar Reel 1',
+    },
+    {
+      src: '/image/Portfolio/Video & Reels Production/Emaar (2).mp4',
+      title: 'Emaar Reel 2',
+    },
+    {
+      src: '/image/Portfolio/Video & Reels Production/Emaar (3).mp4',
+      title: 'Emaar Reel 3',
+    },
+  ]
+
   const categories = [
     { id: 'all', label: language === 'en' ? 'All' : 'الكل' },
     { id: 'graphic', label: language === 'en' ? 'Graphic Design' : 'الجرافيك ديزاين' },
     { id: 'website', label: language === 'en' ? 'Websites' : 'المواقع' },
+    { id: 'logos', label: language === 'en' ? 'Client Logos' : 'لوجوهات العملاء' },
+    { id: 'videos', label: language === 'en' ? 'Videos & Reels' : 'الفيديوهات والريلز' },
   ]
 
   const openLightbox = (index) => {
@@ -357,6 +432,84 @@ const Portfolio = () => {
                     </div>
                   </div>
                 </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Client Logos Section */}
+      {(selectedCategory === 'all' || selectedCategory === 'logos') && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                {language === 'en' ? 'Client Logos' : 'لوجوهات عملائنا'}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                {language === 'en'
+                  ? 'Brand identities we crafted for our clients'
+                  : 'هويات بصرية صممناها لعملائنا'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {clientLogos.map((logo, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="aspect-square rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
+                    <img
+                      src={logo.image}
+                      alt={logo.alt}
+                      className="w-full h-full object-contain p-2"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                      }}
+                    />
+                  </div>
+                  <p className="text-center text-sm font-medium text-gray-700 mt-3">{logo.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Video Reels Section */}
+      {(selectedCategory === 'all' || selectedCategory === 'videos') && (
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                {language === 'en' ? 'Video & Reels Production' : 'إنتاج الفيديوهات والريلز'}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                {language === 'en'
+                  ? 'Selected production reels from client campaigns'
+                  : 'عينات من أعمال تصوير ومونتاج حملات العملاء'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {videoReels.map((video, index) => (
+                <div key={index} className="bg-gray-50 rounded-2xl overflow-hidden shadow-md border border-gray-100">
+                  <video
+                    className="w-full h-80 object-cover bg-black"
+                    controls
+                    preload="metadata"
+                  >
+                    <source src={video.src} type="video/mp4" />
+                    {language === 'en'
+                      ? 'Your browser does not support the video tag.'
+                      : 'متصفحك لا يدعم تشغيل الفيديو.'}
+                  </video>
+                  <div className="p-4">
+                    <p className="font-semibold text-gray-800">{video.title}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

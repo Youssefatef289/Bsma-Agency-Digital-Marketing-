@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Languages } from 'lucide-react'
+import { Menu, X, Languages, Moon, Sun } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useTheme } from '../contexts/ThemeContext'
 import { translations } from '../translations/translations'
 
 const Navbar = () => {
@@ -9,7 +10,10 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const { language, toggleLanguage, isTransitioning } = useLanguage()
+  const { isDark, toggleTheme } = useTheme()
   const t = translations[language]
+  const isHomePage = location.pathname === '/'
+  const isHeroIntegrated = isHomePage && !scrolled
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +50,7 @@ const Navbar = () => {
   const isRTL = language === 'ar'
 
   return (
-    <nav className={`navbar navbar-scrolled ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+    <nav className={`navbar ${isHeroIntegrated ? 'navbar-transparent' : 'navbar-scrolled'} ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
       <div className="navbar-container">
         <div className={`navbar-content ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo - Always visible with blue logo */}
@@ -55,7 +59,7 @@ const Navbar = () => {
             className="navbar-logo"
           >
             <img
-              src="/image/logo - blue 2.png"
+              src={isDark || isHeroIntegrated ? '/image/logo-white.png' : '/image/logo - blue 2.png'}
               alt="Bsma Agency Digital Marketing"
               className="navbar-logo-img transition-all duration-300"
               onError={(e) => {
@@ -76,8 +80,10 @@ const Navbar = () => {
                     to={link.path}
                     className={`navbar-link-underline px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap relative ${
                       location.pathname === link.path
-                        ? 'text-purple-600 font-bold'
-                        : 'text-gray-700 hover:text-purple-600'
+                        ? 'text-purple-400 font-bold'
+                        : isHeroIntegrated
+                          ? 'text-gray-100 hover:text-purple-300'
+                          : 'text-gray-700 hover:text-purple-600'
                     }`}
                   >
                     {link.label}
@@ -86,11 +92,27 @@ const Navbar = () => {
                 {/* زر اللغة */}
                 <button
                   onClick={toggleLanguage}
-                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300 min-w-[80px]"
+                  className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 min-w-[80px] ${
+                    isHeroIntegrated
+                      ? 'border border-white/25 bg-white/10 text-white hover:bg-white/20'
+                      : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300'
+                  }`}
                   title={language === 'en' ? 'التبديل إلى العربية' : 'Switch to English'}
                 >
                   <Languages size={18} />
                   <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
+                </button>
+                <button
+                  onClick={toggleTheme}
+                  className={`theme-toggle-btn flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 min-w-[80px] ${
+                    isHeroIntegrated
+                      ? 'border border-white/25 bg-white/10 text-white hover:bg-white/20'
+                      : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300'
+                  }`}
+                  title={isDark ? (language === 'en' ? 'Switch to Light Mode' : 'تفعيل الوضع النهاري') : (language === 'en' ? 'Switch to Dark Mode' : 'تفعيل الوضع الليلي')}
+                >
+                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                  <span className="text-sm font-medium">{isDark ? (language === 'en' ? 'Light' : 'نهاري') : (language === 'en' ? 'Dark' : 'ليلي')}</span>
                 </button>
                 {/* زر Get Started */}
                 <Link
@@ -109,8 +131,10 @@ const Navbar = () => {
                     to={link.path}
                     className={`navbar-link-underline px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap relative ${
                       location.pathname === link.path
-                        ? 'text-purple-600 font-bold'
-                        : 'text-gray-700 hover:text-purple-600'
+                        ? 'text-purple-400 font-bold'
+                        : isHeroIntegrated
+                          ? 'text-gray-100 hover:text-purple-300'
+                          : 'text-gray-700 hover:text-purple-600'
                     }`}
                   >
                     {link.label}
@@ -118,11 +142,27 @@ const Navbar = () => {
                 ))}
                 <button
                   onClick={toggleLanguage}
-                  className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300 min-w-[80px]"
+                  className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 min-w-[80px] ${
+                    isHeroIntegrated
+                      ? 'border border-white/25 bg-white/10 text-white hover:bg-white/20'
+                      : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300'
+                  }`}
                   title="Switch to Arabic"
                 >
                   <Languages size={18} />
                   <span className="text-sm font-medium">AR</span>
+                </button>
+                <button
+                  onClick={toggleTheme}
+                  className={`theme-toggle-btn flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 min-w-[80px] ${
+                    isHeroIntegrated
+                      ? 'border border-white/25 bg-white/10 text-white hover:bg-white/20'
+                      : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300'
+                  }`}
+                  title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                >
+                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                  <span className="text-sm font-medium">{isDark ? 'Light' : 'Dark'}</span>
                 </button>
                 <Link
                   to="/contact"
@@ -138,15 +178,32 @@ const Navbar = () => {
           <div className={`navbar-mobile ${isRTL ? 'flex-row-reverse' : ''}`}>
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300"
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 ${
+                isHeroIntegrated
+                  ? 'border border-white/25 bg-white/10 text-white hover:bg-white/20'
+                  : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300'
+              }`}
               title={language === 'en' ? 'Switch to Arabic' : 'التبديل إلى الإنجليزية'}
             >
               <Languages size={18} />
               <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
             </button>
             <button
+              onClick={toggleTheme}
+              className={`theme-toggle-btn flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 ${
+                isHeroIntegrated
+                  ? 'border border-white/25 bg-white/10 text-white hover:bg-white/20'
+                  : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:border-purple-300'
+              }`}
+              title={isDark ? (language === 'en' ? 'Switch to Light Mode' : 'تفعيل الوضع النهاري') : (language === 'en' ? 'Switch to Dark Mode' : 'تفعيل الوضع الليلي')}
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button
               onClick={() => setIsOpen(!isOpen)}
-              className="navbar-mobile-toggle text-gray-800 hover:text-purple-600 transition-all duration-300 transform hover:scale-110 active:scale-95"
+              className={`navbar-mobile-toggle transition-all duration-300 transform hover:scale-110 active:scale-95 ${
+                isHeroIntegrated ? 'text-white hover:text-purple-300' : 'text-gray-800 hover:text-purple-600'
+              }`}
               aria-label={isOpen ? (language === 'en' ? 'Close menu' : 'إغلاق القائمة') : (language === 'en' ? 'Open menu' : 'فتح القائمة')}
             >
               <div className={`navbar-menu-icon ${isOpen ? 'navbar-menu-icon-open' : ''}`}>

@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useRef, useEffect, useState } from 'react'
-import { ArrowRight, ArrowLeft, Palette, Megaphone, Share2, Video, Globe, CheckCircle, TrendingUp, Users, Award, ChevronLeft, ChevronRight, Bird, Star, Quote, Target, Zap, Shield, Heart, MessageCircle } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Palette, Megaphone, Share2, Video, Globe, CheckCircle, TrendingUp, Users, Award, ChevronLeft, ChevronRight, Star, Quote, Target, Zap, Shield, Heart, MessageCircle, Play, Code2, MonitorSmartphone, Facebook } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { translations } from '../translations/translations'
-import heroIllustration from '../assets/illustrations/hero-illustration.svg'
 import svgPaidAds from '../assets/illustrations/service-paid-ads.svg'
 import svgSocial from '../assets/illustrations/service-social-media.svg'
 import svgVideo from '../assets/illustrations/service-video.svg'
@@ -194,6 +193,27 @@ const Home = () => {
 
   const websiteProjects = [
     {
+      title: 'Brilliant Home',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/Brilliant Home.png',
+      link: 'https://brilliant-home.vercel.app/',
+      isExternal: true,
+    },
+    {
+      title: 'Emaar',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/Emaar.png',
+      link: 'https://emaar-company.vercel.app/',
+      isExternal: true,
+    },
+    {
+      title: 'Al Fadi',
+      category: t.home.webDevelopment,
+      image: '/image/Portfolio/Portfolio-Website/Al Fadi.png',
+      link: 'https://al-fadi.vercel.app/',
+      isExternal: true,
+    },
+    {
       title: 'Sky Block',
       category: t.home.webDevelopment,
       image: '/image/Portfolio/Portfolio-Website/Sky-Block.png',
@@ -258,6 +278,56 @@ const Home = () => {
     },
   ]
 
+  const clientLogos = [
+    {
+      name: 'Brillante Furniture',
+      image: '/image/Portfolio/logos work company/Brillante Furniture.jpeg',
+    },
+    {
+      name: 'Emaar',
+      image: '/image/Portfolio/logos work company/Emaar.jpg',
+    },
+    {
+      name: 'Mix',
+      image: '/image/Portfolio/logos work company/mix.jpg',
+    },
+    {
+      name: language === 'en' ? 'Al Fady' : 'الفادي',
+      image: '/image/Portfolio/logos work company/الفادى.jpeg',
+    },
+    {
+      name: language === 'en' ? 'Profile Furniture' : 'بروفايل للأثاث',
+      image: '/image/Portfolio/logos work company/بروفايل للاثاث.jpg',
+    },
+  ]
+
+  const videoReels = [
+    {
+      title: 'Al Fady Reel',
+      src: '/image/Portfolio/Video & Reels Production/Al-fady.mp4',
+    },
+    {
+      title: 'Brillante Furniture Reel 1',
+      src: '/image/Portfolio/Video & Reels Production/Brillante Furniture (1).mp4',
+    },
+    {
+      title: 'Brillante Furniture Reel 2',
+      src: '/image/Portfolio/Video & Reels Production/Brillante Furniture (2).mp4',
+    },
+    {
+      title: 'Emaar Reel 1',
+      src: '/image/Portfolio/Video & Reels Production/Emaar (1).mp4',
+    },
+    {
+      title: 'Emaar Reel 2',
+      src: '/image/Portfolio/Video & Reels Production/Emaar (2).mp4',
+    },
+    {
+      title: 'Emaar Reel 3',
+      src: '/image/Portfolio/Video & Reels Production/Emaar (3).mp4',
+    },
+  ]
+
   const stats = [
     { number: '20+', label: t.home.stats.satisfiedClients, icon: Users },
     { number: '60+', label: t.home.stats.successfulProjects, icon: Award },
@@ -267,82 +337,68 @@ const Home = () => {
 
   return (
     <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-      {/* Hero Section - Clean White Background - Mobile Optimized */}
-      <section className={`relative bg-white overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center pt-20 sm:pt-24 ${isRTL ? 'text-right' : 'text-left'}`}>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${isRTL ? 'lg:grid-flow-dense' : ''}`}>
-            {/* Text Content */}
-            <div className={`animate-fade-in ${isRTL ? 'lg:col-start-2 lg:col-end-3' : 'lg:col-start-1 lg:col-end-2'}`}>
-              {/* Badge - Animated */}
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 mb-6 animate-slide-up ${isRTL ? 'flex-row-reverse' : ''}`} style={{ animationDelay: '0.1s' }}>
-                <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-purple-700">
-                  {language === 'en' ? 'Digital Marketing Agency' : 'وكالة تسويق رقمي'}
-                </span>
-              </div>
-              
-              {/* Main Title - Animated - Mobile Optimized */}
-              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4 sm:mb-6 text-gray-900 animate-slide-up ${isRTL ? 'text-right' : 'text-left'}`} style={{ animationDelay: '0.2s' }}>
-                <span className="block mb-2">{t.home.heroTitle}</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 mt-2 animate-gradient">
-                  {t.home.heroSubtitle}
-                </span>
+      {/* Hero Section - Dark Neon Layout */}
+      <section className={`hero-section ${isRTL ? 'hero-rtl' : ''}`}>
+        <div className="hero-bg-glow"></div>
+        <div className="hero-grid-pattern"></div>
+        <div className="hero-content">
+          <div className="hero-layout">
+            <div className="hero-copy">
+              <span className="hero-badge">{language === 'en' ? 'We leave our mark in your success' : 'نترك بصمة في نجاحك'}</span>
+              <h1 className="hero-title">
+                {language === 'en' ? 'Integrated Digital Solutions' : 'حلول رقمية متكاملة'}
+                <span className="hero-subtitle">{language === 'en' ? 'That Build Growth for Your Business' : 'تصنع الفرق وتنمو بأعمالك'}</span>
               </h1>
-              
-              {/* Description - Animated - Mobile Optimized */}
-              <p className={`text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-10 leading-relaxed max-w-2xl animate-slide-up ${isRTL ? 'text-right ml-auto' : 'text-left'}`} style={{ animationDelay: '0.3s' }}>
-                {t.home.heroDescription}
+              <p className="hero-description">
+                {language === 'en'
+                  ? 'We provide programming, website design, digital marketing, video production, and social media management professionally.'
+                  : 'نقدم لك خدمات البرمجة، تصميم المواقع، التسويق الرقمي، إنتاج الفيديوهات، وإدارة صفحات فيسبوك باحترافية.'}
               </p>
-              
-              {/* Stats Preview - Animated - Mobile Optimized */}
-              <div className={`mt-8 sm:mt-12 flex flex-wrap gap-4 sm:gap-6 animate-slide-up ${isRTL ? 'justify-end' : 'justify-start'}`} style={{ animationDelay: '0.5s' }}>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">20+</div>
-                  <div className="text-xs sm:text-sm text-gray-600">{language === 'en' ? 'Clients' : 'عميل'}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">60+</div>
-                  <div className="text-xs sm:text-sm text-gray-600">{language === 'en' ? 'Projects' : 'مشروع'}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">2+</div>
-                  <div className="text-xs sm:text-sm text-gray-600">{language === 'en' ? 'Years' : 'سنة'}</div>
-                </div>
+              <div className={`hero-buttons ${isRTL ? 'hero-buttons-rtl' : ''}`}>
+                <Link to="/contact" className="hero-btn-primary">
+                  <span>{language === 'en' ? 'Discover Our Services' : 'استكشف خدماتنا'}</span>
+                  <ArrowIcon size={18} />
+                </Link>
+                <Link to="/portfolio" className="hero-btn-secondary">
+                  <span>{language === 'en' ? 'See Our Work' : 'شاهد أعمالنا'}</span>
+                  <Play size={16} />
+                </Link>
+              </div>
+
+              <div className="hero-services-strip">
+                <div className="hero-service-item"><Code2 size={18} /><span>{language === 'en' ? 'Programming' : 'برمجة احترافية'}</span></div>
+                <div className="hero-service-item"><MonitorSmartphone size={18} /><span>{language === 'en' ? 'Web Design' : 'تصميم مواقع'}</span></div>
+                <div className="hero-service-item"><Megaphone size={18} /><span>{language === 'en' ? 'Digital Marketing' : 'تسويق رقمي'}</span></div>
+                <div className="hero-service-item"><Play size={18} /><span>{language === 'en' ? 'Video Reels' : 'فيديوهات ترويجية'}</span></div>
+                <div className="hero-service-item"><Facebook size={18} /><span>{language === 'en' ? 'Social Management' : 'إدارة صفحات فيسبوك'}</span></div>
               </div>
             </div>
-            
-            {/* Image Content - Animated - Visible on All Screens */}
-            <div className={`animate-slide-in-right ${isRTL ? 'lg:col-start-1 lg:col-end-2' : 'lg:col-start-2 lg:col-end-3'}`} style={{ animationDelay: '0.3s' }}>
-              <div className="relative">
-                {/* Image Container - Clean Design Without Shadow */}
-                <div className="relative bg-white rounded-3xl p-4 lg:p-6 border-2 border-purple-100 overflow-hidden group transition-all duration-500">
-                  {/* Hero Image - Animated */}
-                  <div className="relative overflow-hidden rounded-2xl">
-                    <img
-                      src="/image/hero-animation.svg"
-                      alt={language === 'en' ? 'Digital Marketing Agency' : 'وكالة تسويق رقمي'}
-                      className="w-full h-auto object-cover animate-image-float group-hover:scale-105 transition-transform duration-700"
-                      onError={(e) => {
-                        // Fallback to logo if hero image doesn't exist
-                        e.target.src = '/image/logo - blue 2.png'
-                      }}
-                    />
-                    {/* Gradient Overlay on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+            <div className="hero-visual">
+              <div className="hero-laptop">
+                <div className="hero-laptop-screen">
+                  <div className="hero-screen-header">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
-                  
-                  {/* Floating Bird Icon - Animated */}
-                  <div className={`absolute ${isRTL ? 'left-4' : 'right-4'} -top-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 rounded-full animate-bounce flex items-center justify-center`}>
-                    <Bird size={20} className="animate-float" />
-                  </div>
-                  
-                  {/* Floating Badge - Animated */}
-                  <div className={`absolute ${isRTL ? 'right-4' : 'left-4'} -bottom-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse`}>
-                    {language === 'en' ? '✨ Premium Quality' : '✨ جودة ممتازة'}
+                  <div className="hero-screen-content">
+                    <h4>{language === 'en' ? 'A Better Digital Future' : 'نحو مستقبل رقمي أفضل'}</h4>
+                    <p>{language === 'en' ? 'Creative solutions for your business' : 'حلول إبداعية لعملك'}</p>
+                    <div className="hero-screen-buttons">
+                      <span></span>
+                      <span></span>
+                    </div>
                   </div>
                 </div>
+                <div className="hero-laptop-base"></div>
               </div>
+
+              <div className="hero-floating-card hero-card-top">{language === 'en' ? 'Programming' : 'برمجة'}</div>
+              <div className="hero-floating-card hero-card-right">{language === 'en' ? 'Digital Marketing' : 'تسويق رقمي'}</div>
+              <div className="hero-floating-card hero-card-left">{language === 'en' ? 'Web Design' : 'تصميم مواقع'}</div>
+              <div className="hero-floating-card hero-card-mid-left">{language === 'en' ? 'Videos' : 'فيديوهات'}</div>
+              <div className="hero-floating-card hero-card-bottom-right">{language === 'en' ? 'Facebook Pages' : 'إدارة صفحات فيسبوك'}</div>
             </div>
           </div>
         </div>
@@ -633,6 +689,76 @@ const Home = () => {
                 </a>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Client Logos Section */}
+      <section className="py-20 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {language === 'en' ? 'Our Clients Logos' : 'لوجوهات عملائنا'}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {language === 'en'
+                ? 'A selection of logo identities created for our clients'
+                : 'مجموعة من اللوجوهات التي صممناها لعملائنا'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {clientLogos.map((logo, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="aspect-square rounded-xl bg-white overflow-hidden flex items-center justify-center">
+                  <img
+                    src={logo.image}
+                    alt={logo.name}
+                    className="w-full h-full object-contain p-2"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.style.display = 'none'
+                    }}
+                  />
+                </div>
+                <p className="text-center text-sm font-semibold text-gray-700 mt-3">{logo.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video Reels Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {language === 'en' ? 'Video & Reels Production' : 'الفيديوهات والريلز'}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {language === 'en'
+                ? 'Recent video production highlights for our clients'
+                : 'أحدث أعمالنا في تصوير ومونتاج الفيديوهات لعملائنا'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {videoReels.map((video, index) => (
+              <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100">
+                <video className="w-full h-80 object-cover bg-black" controls preload="metadata">
+                  <source src={video.src} type="video/mp4" />
+                  {language === 'en'
+                    ? 'Your browser does not support the video tag.'
+                    : 'متصفحك لا يدعم تشغيل الفيديو.'}
+                </video>
+                <div className="p-4">
+                  <p className="font-semibold text-gray-800">{video.title}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext.jsx'
+import { ThemeProvider } from './contexts/ThemeContext.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import FloatingActionButton from './components/FloatingActionButton.jsx'
@@ -36,9 +37,11 @@ const AppContent = () => {
 
 function App() {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </ThemeProvider>
   )
 }
 

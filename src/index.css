@@ -108,3 +108,52 @@
 [dir="ltr"] {
   transition: all 0.3s ease-in-out;
 }
+
+/* Dark mode base */
+html.dark body {
+  background: #0b1020;
+  color: #e5e7eb;
+}
+
+/* Tailwind utility overrides in dark mode */
+html.dark .bg-white {
+  background-color: #111827 !important;
+}
+
+html.dark .bg-gray-50 {
+  background-color: #0f172a !important;
+}
+
+html.dark .bg-gray-100 {
+  background-color: #1f2937 !important;
+}
+
+html.dark .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+html.dark .text-gray-800 {
+  color: #e5e7eb !important;
+}
+
+html.dark .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+html.dark .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+html.dark .border-gray-100,
+html.dark .border-gray-200 {
+  border-color: #374151 !important;
+}
+
+html.dark .from-gray-50,
+html.dark .to-gray-100,
+html.dark .from-gray-200,
+html.dark .to-gray-300 {
+  --tw-gradient-from: #1f2937 !important;
+  --tw-gradient-to: rgb(17 24 39 / 0) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #111827, var(--tw-gradient-to) !important;
+}
