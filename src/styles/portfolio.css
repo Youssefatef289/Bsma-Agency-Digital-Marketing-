@@ -126,7 +126,8 @@
 }
 
 .portfolio-website-image {
-  height: 16rem;
+  height: 11rem;
+  max-height: 11rem;
   background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
   overflow: hidden;
 }

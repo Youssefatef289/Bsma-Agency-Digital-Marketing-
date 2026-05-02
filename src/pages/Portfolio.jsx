@@ -402,34 +402,38 @@ const Portfolio = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5">
               {websiteProjects.map((project, index) => (
                 <a
                   key={index}
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                  className="group flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
                 >
-                  <div className="relative h-64 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
+                  <div className="relative aspect-video w-full max-h-44 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden shrink-0">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="inline-block px-3 py-1 bg-blue-600 text-white text-sm rounded-full mb-2">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="inline-block px-2 py-0.5 bg-blue-600 text-white text-xs rounded-full mb-1.5">
                         {language === 'en' ? 'Website' : 'موقع ويب'}
                       </span>
-                      <h3 className="text-white text-xl font-bold">{project.title}</h3>
-                      <p className="text-white/80 text-sm mt-2">
+                      <h3 className="text-white text-base font-bold line-clamp-2 leading-snug">{project.title}</h3>
+                      <p className="text-white/85 text-xs mt-1">
                         {language === 'en' ? 'Visit Website →' : 'زيارة الموقع ←'}
                       </p>
                     </div>
+                  </div>
+                  <div className={`px-3 py-2.5 border-t border-gray-100 ${isRTL ? 'text-right' : 'text-left'}`}>
+                    <h3 className="text-sm font-bold text-gray-900 line-clamp-2 leading-snug">{project.title}</h3>
+                    <p className="text-[11px] text-gray-500 mt-0.5">{language === 'en' ? 'Website' : 'موقع ويب'}</p>
                   </div>
                 </a>
               ))}
@@ -453,24 +457,24 @@ const Portfolio = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 max-w-5xl mx-auto">
               {clientLogos.map((logo, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300"
+                  className="bg-white rounded-xl p-2.5 sm:p-3 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col"
                 >
-                  <div className="aspect-square rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
+                  <div className="aspect-square max-h-24 sm:max-h-28 mx-auto w-full rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
                     <img
                       src={logo.image}
                       alt={logo.alt}
-                      className="w-full h-full object-contain p-2"
+                      className="max-w-full max-h-full w-auto h-auto object-contain p-1.5"
                       loading="lazy"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
                     />
                   </div>
-                  <p className="text-center text-sm font-medium text-gray-700 mt-3">{logo.name}</p>
+                  <p className="text-center text-[11px] sm:text-xs font-medium text-gray-700 mt-2 line-clamp-2 leading-tight">{logo.name}</p>
                 </div>
               ))}
             </div>
@@ -493,21 +497,24 @@ const Portfolio = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto">
               {videoReels.map((video, index) => (
-                <div key={index} className="bg-gray-50 rounded-2xl overflow-hidden shadow-md border border-gray-100">
-                  <video
-                    className="w-full h-80 object-cover bg-black"
-                    controls
-                    preload="metadata"
-                  >
-                    <source src={video.src} type="video/mp4" />
-                    {language === 'en'
-                      ? 'Your browser does not support the video tag.'
-                      : 'متصفحك لا يدعم تشغيل الفيديو.'}
-                  </video>
-                  <div className="p-4">
-                    <p className="font-semibold text-gray-800">{video.title}</p>
+                <div key={index} className="bg-gray-50 rounded-xl overflow-hidden shadow-md border border-gray-100 flex flex-col">
+                  <div className="relative w-full aspect-video bg-black max-h-52 sm:max-h-56">
+                    <video
+                      className="absolute inset-0 w-full h-full object-cover"
+                      controls
+                      preload="metadata"
+                      playsInline
+                    >
+                      <source src={video.src} type="video/mp4" />
+                      {language === 'en'
+                        ? 'Your browser does not support the video tag.'
+                        : 'متصفحك لا يدعم تشغيل الفيديو.'}
+                    </video>
+                  </div>
+                  <div className="p-3 bg-white border-t border-gray-100">
+                    <p className="text-sm font-semibold text-gray-800 line-clamp-2">{video.title}</p>
                   </div>
                 </div>
               ))}

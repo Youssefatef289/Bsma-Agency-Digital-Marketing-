@@ -22,8 +22,8 @@ const Home = () => {
   const scrollSlider = (ref, dir) => {
     const el = ref?.current
     if (!el) return
-    const cardWidth = window.innerWidth >= 1024 ? 420 : window.innerWidth >= 768 ? 340 : 280
-    const gap = 16
+    const cardWidth = window.innerWidth >= 1024 ? 300 : window.innerWidth >= 768 ? 260 : 220
+    const gap = 12
     const amount = cardWidth + gap
     const direction = isRTL ? -dir : dir
     el.scrollBy({ left: direction * amount, behavior: 'smooth' })
@@ -36,8 +36,8 @@ const Home = () => {
     const graphicInterval = setInterval(() => {
       if (graphicSliderRef.current) {
         const el = graphicSliderRef.current
-        const cardWidth = window.innerWidth >= 1024 ? 420 : window.innerWidth >= 768 ? 340 : 280
-        const gap = 16
+        const cardWidth = window.innerWidth >= 1024 ? 300 : window.innerWidth >= 768 ? 260 : 220
+        const gap = 12
         const scrollAmount = cardWidth + gap
         const maxScroll = el.scrollWidth - el.clientWidth
         const currentScroll = el.scrollLeft
@@ -54,8 +54,8 @@ const Home = () => {
     const webInterval = setInterval(() => {
       if (webSliderRef.current) {
         const el = webSliderRef.current
-        const cardWidth = window.innerWidth >= 1024 ? 420 : window.innerWidth >= 768 ? 340 : 280
-        const gap = 16
+        const cardWidth = window.innerWidth >= 1024 ? 300 : window.innerWidth >= 768 ? 260 : 220
+        const gap = 12
         const scrollAmount = cardWidth + gap
         const maxScroll = el.scrollWidth - el.clientWidth
         const currentScroll = el.scrollLeft
@@ -580,7 +580,7 @@ const Home = () => {
 
             <div
               ref={graphicSliderRef}
-              className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
+              className="flex gap-3 overflow-x-auto pb-3 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
@@ -589,28 +589,32 @@ const Home = () => {
                 <Link
                   key={index}
                   to={item.link}
-                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 snap-start flex-shrink-0 w-[280px] sm:w-[340px] lg:w-[420px] transform hover:-translate-y-2"
+                  className="group flex flex-col overflow-hidden rounded-xl bg-white border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 snap-start flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] transform hover:-translate-y-1"
                 >
-                  <div className="relative h-[320px] sm:h-[380px] lg:h-[460px] bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+                  <div className="relative aspect-[4/3] w-full bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden shrink-0">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className={`absolute bottom-0 ${isRTL ? 'right-0' : 'left-0'} right-0 p-5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500`}>
-                      <div className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-semibold rounded-lg mb-3">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className={`absolute bottom-0 left-0 right-0 p-3 sm:p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      <div className="inline-block px-2.5 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-semibold rounded-md mb-2">
                         {t.home.graphicDesign}
                       </div>
-                      <h4 className="text-white text-xl font-bold">{item.title}</h4>
-                      <p className="text-white/90 text-sm mt-2">
+                      <h4 className="text-white text-base font-bold leading-snug line-clamp-2">{item.title}</h4>
+                      <p className="text-white/90 text-xs mt-1">
                         {language === 'en' ? 'Click to view more' : 'اضغط لعرض المزيد'}
                       </p>
                     </div>
+                  </div>
+                  <div className={`px-2.5 py-2 border-t border-gray-100 bg-white ${isRTL ? 'text-right' : 'text-left'}`}>
+                    <p className="text-xs font-semibold text-gray-900 line-clamp-2 leading-snug">{item.title}</p>
+                    <p className="text-[10px] text-gray-500 mt-0.5">{t.home.graphicDesign}</p>
                   </div>
                 </Link>
               ))}
@@ -653,7 +657,7 @@ const Home = () => {
 
             <div
               ref={webSliderRef}
-              className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory"
+              className="flex gap-3 overflow-x-auto pb-3 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
@@ -664,27 +668,31 @@ const Home = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 snap-start flex-shrink-0 w-[280px] sm:w-[340px] lg:w-[420px] transform hover:-translate-y-2"
+                  className="group flex flex-col overflow-hidden rounded-xl bg-white border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 snap-start flex-shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] transform hover:-translate-y-1"
                 >
-                  <div className="relative h-[320px] sm:h-[380px] lg:h-[460px] bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+                  <div className="relative aspect-[4/3] w-full bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden shrink-0">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       onError={(e) => {
                         e.target.style.display = 'none'
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className={`absolute bottom-0 ${isRTL ? 'right-0' : 'left-0'} right-0 p-5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500`}>
-                      <div className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-semibold rounded-lg mb-3">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className={`absolute bottom-0 left-0 right-0 p-3 sm:p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      <div className="inline-block px-2.5 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-semibold rounded-md mb-2">
                         {t.home.webDevelopment}
                       </div>
-                      <h4 className="text-white text-xl font-bold mb-2">{project.title}</h4>
-                      <p className="text-white/90 text-sm flex items-center gap-2">
+                      <h4 className="text-white text-base font-bold mb-1 line-clamp-2 leading-snug">{project.title}</h4>
+                      <p className="text-white/90 text-xs flex items-center gap-2">
                         {language === 'en' ? 'Visit Website →' : 'زيارة الموقع ←'}
                       </p>
                     </div>
+                  </div>
+                  <div className={`px-2.5 py-2 border-t border-gray-100 bg-white ${isRTL ? 'text-right' : 'text-left'}`}>
+                    <p className="text-xs font-semibold text-gray-900 line-clamp-2 leading-snug">{project.title}</p>
+                    <p className="text-[10px] text-gray-500 mt-0.5">{t.home.webDevelopment}</p>
                   </div>
                 </a>
               ))}
@@ -707,24 +715,24 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 max-w-5xl mx-auto">
             {clientLogos.map((logo, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300"
+                className="bg-gray-50 rounded-xl p-2.5 sm:p-3 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
               >
-                <div className="aspect-square rounded-xl bg-white overflow-hidden flex items-center justify-center">
+                <div className="aspect-square max-h-24 sm:max-h-28 mx-auto w-full rounded-lg bg-white overflow-hidden flex items-center justify-center">
                   <img
                     src={logo.image}
                     alt={logo.name}
-                    className="w-full h-full object-contain p-2"
+                    className="max-w-full max-h-full w-auto h-auto object-contain p-1.5"
                     loading="lazy"
                     onError={(e) => {
                       e.target.style.display = 'none'
                     }}
                   />
                 </div>
-                <p className="text-center text-sm font-semibold text-gray-700 mt-3">{logo.name}</p>
+                <p className="text-center text-[11px] sm:text-xs font-semibold text-gray-700 mt-2 line-clamp-2 leading-tight">{logo.name}</p>
               </div>
             ))}
           </div>
@@ -745,17 +753,19 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto">
             {videoReels.map((video, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100">
-                <video className="w-full h-80 object-cover bg-black" controls preload="metadata">
-                  <source src={video.src} type="video/mp4" />
-                  {language === 'en'
-                    ? 'Your browser does not support the video tag.'
-                    : 'متصفحك لا يدعم تشغيل الفيديو.'}
-                </video>
-                <div className="p-4">
-                  <p className="font-semibold text-gray-800">{video.title}</p>
+              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100 flex flex-col">
+                <div className="relative w-full aspect-video bg-black max-h-52 sm:max-h-56">
+                  <video className="absolute inset-0 w-full h-full object-cover" controls preload="metadata" playsInline>
+                    <source src={video.src} type="video/mp4" />
+                    {language === 'en'
+                      ? 'Your browser does not support the video tag.'
+                      : 'متصفحك لا يدعم تشغيل الفيديو.'}
+                  </video>
+                </div>
+                <div className="p-3 border-t border-gray-100">
+                  <p className="text-sm font-semibold text-gray-800 line-clamp-2">{video.title}</p>
                 </div>
               </div>
             ))}
